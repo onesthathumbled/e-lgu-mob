@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../shared/widgets/shadcn_components.dart';
 import '../../../../shared/widgets/main_navigation.dart';
+import '../../domain/entities/permit_entity.dart';
+import 'permits_application_page.dart';
 
 class PermitsPage extends StatelessWidget {
   const PermitsPage({super.key});
@@ -58,8 +60,12 @@ class PermitsPage extends StatelessWidget {
               category: 'Health',
               estimatedTime: '5-7 business days',
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Health permit application coming soon')),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const PermitsApplicationPage(
+                      permitType: PermitType.healthPermit,
+                    ),
+                  ),
                 );
               },
             ),
@@ -67,11 +73,15 @@ class PermitsPage extends StatelessWidget {
             ServiceCard(
               title: 'Work Permit',
               description: 'Apply for work permits for employment and business operations.',
-              category: 'Health',
+              category: 'Work',
               estimatedTime: '3-5 business days',
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Work permit application coming soon')),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const PermitsApplicationPage(
+                      permitType: PermitType.workPermit,
+                    ),
+                  ),
                 );
               },
             ),
@@ -79,11 +89,15 @@ class PermitsPage extends StatelessWidget {
             ServiceCard(
               title: 'Sanitation Permit',
               description: 'Apply for sanitation permits for waste management and cleanliness.',
-              category: 'Health',
+              category: 'Sanitation',
               estimatedTime: '3-5 business days',
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Sanitation permit application coming soon')),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const PermitsApplicationPage(
+                      permitType: PermitType.sanitationPermit,
+                    ),
+                  ),
                 );
               },
             ),

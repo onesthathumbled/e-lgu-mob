@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../shared/widgets/shadcn_components.dart';
 import '../../../../shared/widgets/main_navigation.dart';
+import '../../domain/entities/civil_registry_entity.dart';
+import 'civil_registry_request_page.dart';
 
 class CivilRegistryPage extends StatelessWidget {
   const CivilRegistryPage({super.key});
@@ -58,8 +60,12 @@ class CivilRegistryPage extends StatelessWidget {
               category: 'Civil Registry',
               estimatedTime: '3-5 business days',
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Birth certificate request coming soon')),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CivilRegistryRequestPage(
+                      documentType: CivilRegistryDocumentType.birthCertificate,
+                    ),
+                  ),
                 );
               },
             ),
@@ -70,8 +76,12 @@ class CivilRegistryPage extends StatelessWidget {
               category: 'Civil Registry',
               estimatedTime: '3-5 business days',
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Marriage certificate request coming soon')),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CivilRegistryRequestPage(
+                      documentType: CivilRegistryDocumentType.marriageCertificate,
+                    ),
+                  ),
                 );
               },
             ),
@@ -82,8 +92,12 @@ class CivilRegistryPage extends StatelessWidget {
               category: 'Civil Registry',
               estimatedTime: '3-5 business days',
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Death certificate request coming soon')),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CivilRegistryRequestPage(
+                      documentType: CivilRegistryDocumentType.deathCertificate,
+                    ),
+                  ),
                 );
               },
             ),
