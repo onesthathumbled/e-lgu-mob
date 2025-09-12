@@ -36,32 +36,39 @@ class ShadcnTheme {
   static const double lineHeightNormal = 1.5;
   static const double lineHeightRelaxed = 1.75;
 
-  // Colors - inspired by shadcn/ui color palette
-  static const Color background = Color(0xFFFFFFFF);
-  static const Color foreground = Color(0xFF0F172A);
-  static const Color muted = Color(0xFFF1F5F9);
-  static const Color mutedForeground = Color(0xFF64748B);
-  static const Color popover = Color(0xFFFFFFFF);
-  static const Color popoverForeground = Color(0xFF0F172A);
-  static const Color card = Color(0xFFFFFFFF);
-  static const Color cardForeground = Color(0xFF0F172A);
-  static const Color border = Color(0xFFE2E8F0);
-  static const Color input = Color(0xFFE2E8F0);
-  static const Color primary = Color(0xFF0F172A);
-  static const Color primaryForeground = Color(0xFFF8FAFC);
-  static const Color secondary = Color(0xFFF1F5F9);
-  static const Color secondaryForeground = Color(0xFF0F172A);
-  static const Color accent = Color(0xFFF1F5F9);
-  static const Color accentForeground = Color(0xFF0F172A);
-  static const Color destructive = Color(0xFFEF4444);
-  static const Color destructiveForeground = Color(0xFFF8FAFC);
-  static const Color ring = Color(0xFF0F172A);
+  // Colors - Filipino Flag Themed
+  // Philippine Flag Colors: Blue (#0038A8), Red (#CE1126), White (#FFFFFF), Yellow (#FCD116)
+  static const Color background = Color(0xFFFFFFFF); // White
+  static const Color foreground = Color(0xFF1A1A1A); // Dark gray for text
+  static const Color muted = Color(0xFFF8F9FA); // Light gray
+  static const Color mutedForeground = Color(0xFF6B7280); // Medium gray
+  static const Color popover = Color(0xFFFFFFFF); // White
+  static const Color popoverForeground = Color(0xFF1A1A1A); // Dark gray
+  static const Color card = Color(0xFFFFFFFF); // White
+  static const Color cardForeground = Color(0xFF1A1A1A); // Dark gray
+  static const Color border = Color(0xFFE5E7EB); // Light border
+  static const Color input = Color(0xFFF3F4F6); // Light input background
+  static const Color primary = Color(0xFF0038A8); // Philippine Flag Blue
+  static const Color primaryForeground = Color(0xFFFFFFFF); // White text on blue
+  static const Color secondary = Color(0xFFFCD116); // Philippine Flag Yellow
+  static const Color secondaryForeground = Color(0xFF1A1A1A); // Dark text on yellow
+  static const Color accent = Color(0xFFCE1126); // Philippine Flag Red
+  static const Color accentForeground = Color(0xFFFFFFFF); // White text on red
+  static const Color destructive = Color(0xFFCE1126); // Philippine Flag Red
+  static const Color destructiveForeground = Color(0xFFFFFFFF); // White text
+  static const Color ring = Color(0xFF0038A8); // Philippine Flag Blue
 
-  // LGU-specific colors
-  static const Color lguBlue = Color(0xFF1E40AF);
-  static const Color lguGreen = Color(0xFF059669);
-  static const Color lguOrange = Color(0xFFEA580C);
-  static const Color lguRed = Color(0xFFDC2626);
+  // Filipino Flag specific colors
+  static const Color filipinoBlue = Color(0xFF0038A8); // Official Philippine Flag Blue
+  static const Color filipinoRed = Color(0xFFCE1126); // Official Philippine Flag Red
+  static const Color filipinoWhite = Color(0xFFFFFFFF); // White
+  static const Color filipinoYellow = Color(0xFFFCD116); // Official Philippine Flag Yellow
+  
+  // Additional Filipino-themed colors
+  static const Color lguBlue = Color(0xFF0038A8); // Same as Filipino Blue
+  static const Color lguGreen = Color(0xFF059669); // Keep green for nature/environment
+  static const Color lguOrange = Color(0xFFEA580C); // Keep orange for warnings
+  static const Color lguRed = Color(0xFFCE1126); // Same as Filipino Red
 
   // Shadows
   static const List<BoxShadow> shadowSm = [

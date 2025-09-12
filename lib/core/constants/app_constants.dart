@@ -1,9 +1,14 @@
 /// Application-wide constants
 class AppConstants {
   // App Information
-  static const String appName = 'e-LGU';
+  static const String appName = '🇵🇭 e-LGU';
   static const String appVersion = '1.0.0';
-  static const String appDescription = 'Local Government Unit Mobile Application';
+  static const String appDescription = 'Local Government Unit Mobile Application - Serbisyong Pilipino';
+  
+  // Filipino Cultural Elements
+  static const String filipinoGreeting = 'Mabuhay!';
+  static const String filipinoTagline = 'Serbisyong Pilipino, Serbisyong Tapat';
+  static const String filipinoMotto = 'Para sa Bayan, Para sa Mamamayan';
   
   // API Configuration
   static const String baseUrl = 'https://api.lgu-mobile.ph';
@@ -121,15 +126,16 @@ class AppConstants {
   static const String documentReadyMessage = 'Your document is ready for pickup.';
   
   // LGU Information
-  static const String lguName = 'Sample LGU';
-  static const String lguAddress = '123 Main Street, Sample City, Philippines';
+  static const String lguName = 'Lungsod ng Pilipinas';
+  static const String lguAddress = '123 Kalye Rizal, Lungsod ng Pilipinas, Pilipinas';
   static const String lguPhone = '+63 2 1234 5678';
-  static const String lguEmail = 'info@samplelgu.gov.ph';
-  static const String lguWebsite = 'https://www.samplelgu.gov.ph';
+  static const String lguEmail = 'info@lungsodpilipinas.gov.ph';
+  static const String lguWebsite = 'https://www.lungsodpilipinas.gov.ph';
   
   // Office Hours
-  static const String officeHours = 'Monday to Friday, 8:00 AM - 5:00 PM';
+  static const String officeHours = 'Lunes hanggang Biyernes, 8:00 AM - 5:00 PM';
   static const String emergencyContact = '+63 2 1234 5678';
+  static const String filipinoOfficeHours = 'Lunes hanggang Biyernes, 8:00 AM - 5:00 PM';
   
   // Privacy and Terms
   static const String privacyPolicyUrl = 'https://www.samplelgu.gov.ph/privacy';

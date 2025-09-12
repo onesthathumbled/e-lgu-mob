@@ -19,8 +19,9 @@ class MainNavigation extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         currentIndex: _getCurrentIndex(context),
         onTap: (index) => _onTap(context, index),
-        selectedItemColor: Theme.of(context).colorScheme.primary,
+        selectedItemColor: const Color(0xFF0038A8), // Philippine Flag Blue
         unselectedItemColor: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+        backgroundColor: Colors.white,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),

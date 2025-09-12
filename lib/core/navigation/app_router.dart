@@ -257,43 +257,67 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Welcome Section
+            // Welcome Section - Filipino Flag Themed
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Theme.of(context).colorScheme.primary,
-                    Theme.of(context).colorScheme.primary.withValues(alpha: 0.8),
+                    const Color(0xFF0038A8), // Philippine Flag Blue
+                    const Color(0xFF0038A8).withValues(alpha: 0.8),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF0038A8).withValues(alpha: 0.3),
+                    blurRadius: 8,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(
-                    Icons.account_balance,
-                    color: Colors.white,
-                    size: 32,
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    'Welcome to e-LGU',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Your gateway to local government services',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.white.withValues(alpha: 0.9),
-                    ),
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.2),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Icon(
+                          Icons.account_balance,
+                          color: Colors.white,
+                          size: 28,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '🇵🇭 e-LGU',
+                              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              'Your gateway to local government services',
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: Colors.white.withValues(alpha: 0.9),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -324,28 +348,28 @@ class HomePage extends StatelessWidget {
                   icon: Icons.business,
                   title: 'Business Permits',
                   subtitle: 'BPLS Services',
-                  color: Colors.blue,
+                  color: const Color(0xFF0038A8), // Philippine Flag Blue
                   onTap: () => context.go(AppRouter.businessPermits),
                 ),
                 _ServiceCard(
                   icon: Icons.home,
                   title: 'Property Tax',
                   subtitle: 'RPT Payments',
-                  color: Colors.green,
+                  color: const Color(0xFFCE1126), // Philippine Flag Red
                   onTap: () => context.go(AppRouter.propertyTax),
                 ),
                 _ServiceCard(
                   icon: Icons.credit_card,
                   title: 'Digital ID',
                   subtitle: 'Local ID Card',
-                  color: Colors.purple,
+                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
                   onTap: () => context.go(AppRouter.digitalId),
                 ),
                 _ServiceCard(
                   icon: Icons.queue,
                   title: 'Queue Management',
                   subtitle: 'Digital Queue',
-                  color: Colors.orange,
+                  color: const Color(0xFF0038A8), // Philippine Flag Blue
                   onTap: () => context.go('/queue-management'),
                 ),
               ],
@@ -376,70 +400,70 @@ class HomePage extends StatelessWidget {
                   icon: Icons.credit_card,
                   title: 'Digital ID',
                   subtitle: 'LGU ID Services',
-                  color: Colors.orange,
+                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
                   onTap: () => context.go(AppRouter.digitalId),
                 ),
                 _ServiceCard(
                   icon: Icons.description,
                   title: 'Civil Registry',
                   subtitle: 'Birth, Marriage, Death',
-                  color: Colors.purple,
+                  color: const Color(0xFF0038A8), // Philippine Flag Blue
                   onTap: () => context.go(AppRouter.civilRegistry),
                 ),
                 _ServiceCard(
                   icon: Icons.health_and_safety,
                   title: 'Permits',
                   subtitle: 'Health, Work, Sanitation',
-                  color: Colors.red,
+                  color: const Color(0xFFCE1126), // Philippine Flag Red
                   onTap: () => context.go(AppRouter.permits),
                 ),
                 _ServiceCard(
                   icon: Icons.volunteer_activism,
                   title: 'Social Programs',
                   subtitle: 'Assistance & Aid',
-                  color: Colors.teal,
+                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
                   onTap: () => context.go(AppRouter.socialPrograms),
                 ),
                 _ServiceCard(
                   icon: Icons.queue,
                   title: 'Queue Management',
                   subtitle: 'Digital Queue & Ticketing',
-                  color: Colors.cyan,
+                  color: const Color(0xFF0038A8), // Philippine Flag Blue
                   onTap: () => context.go('/queue-management'),
                 ),
                 _ServiceCard(
                   icon: Icons.construction,
                   title: 'Building Permits',
                   subtitle: 'OBOS Applications',
-                  color: Colors.brown,
+                  color: const Color(0xFFCE1126), // Philippine Flag Red
                   onTap: () => context.go('/obos-application'),
                 ),
                 _ServiceCard(
                   icon: Icons.local_taxi,
                   title: 'Transport Services',
                   subtitle: 'Tricycle, Parking, Violations',
-                  color: Colors.amber,
+                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
                   onTap: () => context.go('/transport-services'),
                 ),
                 _ServiceCard(
                   icon: Icons.event,
                   title: 'Facility Bookings',
                   subtitle: 'Reserve halls, gyms, courts',
-                  color: Colors.indigo,
+                  color: const Color(0xFF0038A8), // Philippine Flag Blue
                   onTap: () => context.go('/facility-bookings'),
                 ),
                 _ServiceCard(
                   icon: Icons.calendar_today,
                   title: 'Events Calendar',
                   subtitle: 'Community events & RSVP',
-                  color: Colors.pink,
+                  color: const Color(0xFFCE1126), // Philippine Flag Red
                   onTap: () => context.go('/events-calendar'),
                 ),
                 _ServiceCard(
                   icon: Icons.pets,
                   title: 'Pet Registration',
                   subtitle: 'Register pets & vaccinations',
-                  color: Colors.brown,
+                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
                   onTap: () => context.go('/pet-registration'),
                 ),
               ],
@@ -461,7 +485,7 @@ class HomePage extends StatelessWidget {
               icon: Icons.people,
               title: 'Community',
               subtitle: 'Events, Jobs, Marketplace',
-              color: Colors.indigo,
+              color: const Color(0xFF0038A8), // Philippine Flag Blue
               onTap: () => context.go(AppRouter.community),
               isFullWidth: true,
             ),
@@ -472,7 +496,7 @@ class HomePage extends StatelessWidget {
               icon: Icons.groups,
               title: 'Community Groups',
               subtitle: 'Discussion & Moderation',
-              color: Colors.deepPurple,
+              color: const Color(0xFFCE1126), // Philippine Flag Red
               onTap: () => context.go('/community-groups'),
               isFullWidth: true,
             ),
@@ -483,7 +507,7 @@ class HomePage extends StatelessWidget {
               icon: Icons.map,
               title: 'EVAC Map',
               subtitle: 'Disaster & Evacuation Centers',
-              color: Colors.deepOrange,
+              color: const Color(0xFFFCD116), // Philippine Flag Yellow
               onTap: () => context.go('/evac-map'),
               isFullWidth: true,
             ),
@@ -494,7 +518,7 @@ class HomePage extends StatelessWidget {
               icon: Icons.delete,
               title: 'Waste Schedule',
               subtitle: 'Garbage collection schedule',
-              color: Colors.green,
+              color: const Color(0xFF0038A8), // Philippine Flag Blue
               onTap: () => context.go('/waste-schedule'),
               isFullWidth: true,
             ),
@@ -505,7 +529,7 @@ class HomePage extends StatelessWidget {
               icon: Icons.report_problem,
               title: 'Hazard Reporting',
               subtitle: 'Report road damage, flooding',
-              color: Colors.red,
+              color: const Color(0xFFCE1126), // Philippine Flag Red
               onTap: () => context.go('/hazard-reporting'),
               isFullWidth: true,
             ),
@@ -516,7 +540,7 @@ class HomePage extends StatelessWidget {
               icon: Icons.analytics,
               title: 'Transparency Dashboard',
               subtitle: 'SLA metrics & collection stats',
-              color: Colors.blue,
+              color: const Color(0xFFFCD116), // Philippine Flag Yellow
               onTap: () => context.go('/transparency-dashboards'),
               isFullWidth: true,
             ),
@@ -527,7 +551,7 @@ class HomePage extends StatelessWidget {
               icon: Icons.dataset,
               title: 'Open Data Portal',
               subtitle: 'Public datasets & information',
-              color: Colors.purple,
+              color: const Color(0xFF0038A8), // Philippine Flag Blue
               onTap: () => context.go('/open-data-portal'),
               isFullWidth: true,
             ),
@@ -549,10 +573,10 @@ class HomePage extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.red.withValues(alpha: 0.1),
+                color: const Color(0xFFCE1126).withValues(alpha: 0.1), // Philippine Flag Red
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: Colors.red.withValues(alpha: 0.3),
+                  color: const Color(0xFFCE1126).withValues(alpha: 0.3), // Philippine Flag Red
                 ),
               ),
               child: Column(
@@ -562,14 +586,14 @@ class HomePage extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.emergency,
-                        color: Colors.red,
+                        color: const Color(0xFFCE1126), // Philippine Flag Red
                         size: 24,
                       ),
                       const SizedBox(width: 8),
                       Text(
                         'Emergency Contacts',
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: Colors.red,
+                          color: const Color(0xFFCE1126), // Philippine Flag Red
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -591,10 +615,10 @@ class HomePage extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.blue.withValues(alpha: 0.1),
+                color: const Color(0xFF0038A8).withValues(alpha: 0.1), // Philippine Flag Blue
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: Colors.blue.withValues(alpha: 0.3),
+                  color: const Color(0xFF0038A8).withValues(alpha: 0.3), // Philippine Flag Blue
                 ),
               ),
               child: Column(
@@ -604,14 +628,14 @@ class HomePage extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.campaign,
-                        color: Colors.blue,
+                        color: const Color(0xFF0038A8), // Philippine Flag Blue
                         size: 24,
                       ),
                       const SizedBox(width: 8),
                       Text(
                         'Recent Announcements',
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: Colors.blue,
+                          color: const Color(0xFF0038A8), // Philippine Flag Blue
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -632,25 +656,26 @@ class HomePage extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.green.withValues(alpha: 0.1),
+                color: const Color(0xFFFCD116).withValues(alpha: 0.1), // Philippine Flag Yellow
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: Colors.green.withValues(alpha: 0.3),
+                  color: const Color(0xFFFCD116).withValues(alpha: 0.3), // Philippine Flag Yellow
                 ),
               ),
               child: Row(
                 children: [
                   Icon(
                     Icons.info_outline,
-                    color: Colors.green,
+                    color: const Color(0xFFFCD116), // Philippine Flag Yellow
                     size: 24,
                   ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      'All services are available 24/7. For assistance, contact the LGU hotline.',
+                      '🇵🇭 All services are available 24/7. For assistance, contact the LGU hotline.',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.green.shade700,
+                        color: const Color(0xFF1A1A1A), // Dark text for readability
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -671,7 +696,7 @@ class HomePage extends StatelessWidget {
           Icon(
             icon,
             size: 16,
-            color: Colors.red,
+            color: const Color(0xFFCE1126), // Philippine Flag Red
           ),
           const SizedBox(width: 8),
           Text(
@@ -683,7 +708,7 @@ class HomePage extends StatelessWidget {
             number,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.red,
+              color: Color(0xFFCE1126), // Philippine Flag Red
             ),
           ),
         ],
