@@ -12,7 +12,12 @@ import '../../features/permits/presentation/pages/permits_page.dart';
 import '../../features/social_programs/presentation/pages/social_programs_page.dart';
 import '../../features/community/presentation/pages/community_page.dart';
 import '../../features/notifications/presentation/pages/notifications_page.dart';
-import '../../features/phase2/presentation/pages/phase2_dashboard_page.dart';
+import '../../features/phase2/queue_management/presentation/pages/queue_dashboard_page.dart';
+import '../../features/phase2/obos/presentation/pages/obos_application_page.dart';
+import '../../features/phase2/transport/presentation/pages/transport_services_page.dart';
+import '../../features/phase2/evac_map/presentation/pages/evac_map_page.dart';
+import '../../features/phase2/community_groups/presentation/pages/community_groups_page.dart';
+import '../../features/phase2/gamification/presentation/pages/gamification_page.dart';
 import '../../shared/widgets/main_navigation.dart';
 import '../../shared/widgets/onboarding_page.dart';
 import '../../shared/widgets/splash_page.dart';
@@ -88,9 +93,34 @@ class AppRouter {
             builder: (context, state) => const NotificationsPage(),
           ),
           GoRoute(
-            path: '/phase2',
-            name: 'phase2',
-            builder: (context, state) => const Phase2DashboardPage(),
+            path: '/queue-management',
+            name: 'queue-management',
+            builder: (context, state) => const QueueDashboardPage(),
+          ),
+          GoRoute(
+            path: '/obos-application',
+            name: 'obos-application',
+            builder: (context, state) => const ObosApplicationPage(),
+          ),
+          GoRoute(
+            path: '/transport-services',
+            name: 'transport-services',
+            builder: (context, state) => const TransportServicesPage(),
+          ),
+          GoRoute(
+            path: '/evac-map',
+            name: 'evac-map',
+            builder: (context, state) => const EvacMapPage(),
+          ),
+          GoRoute(
+            path: '/community-groups',
+            name: 'community-groups',
+            builder: (context, state) => const CommunityGroupsPage(),
+          ),
+          GoRoute(
+            path: '/gamification',
+            name: 'gamification',
+            builder: (context, state) => const GamificationPage(),
           ),
           GoRoute(
             path: businessPermits,
@@ -290,6 +320,27 @@ class HomePage extends StatelessWidget {
                   color: Colors.teal,
                   onTap: () => context.go(AppRouter.socialPrograms),
                 ),
+                _ServiceCard(
+                  icon: Icons.queue,
+                  title: 'Queue Management',
+                  subtitle: 'Digital Queue & Ticketing',
+                  color: Colors.cyan,
+                  onTap: () => context.go('/queue-management'),
+                ),
+                _ServiceCard(
+                  icon: Icons.construction,
+                  title: 'Building Permits',
+                  subtitle: 'OBOS Applications',
+                  color: Colors.brown,
+                  onTap: () => context.go('/obos-application'),
+                ),
+                _ServiceCard(
+                  icon: Icons.local_taxi,
+                  title: 'Transport Services',
+                  subtitle: 'Tricycle, Parking, Violations',
+                  color: Colors.amber,
+                  onTap: () => context.go('/transport-services'),
+                ),
               ],
             ),
             
@@ -311,6 +362,28 @@ class HomePage extends StatelessWidget {
               subtitle: 'Events, Jobs, Marketplace',
               color: Colors.indigo,
               onTap: () => context.go(AppRouter.community),
+              isFullWidth: true,
+            ),
+            
+            const SizedBox(height: 16),
+            
+            _ServiceCard(
+              icon: Icons.groups,
+              title: 'Community Groups',
+              subtitle: 'Discussion & Moderation',
+              color: Colors.deepPurple,
+              onTap: () => context.go('/community-groups'),
+              isFullWidth: true,
+            ),
+            
+            const SizedBox(height: 16),
+            
+            _ServiceCard(
+              icon: Icons.map,
+              title: 'EVAC Map',
+              subtitle: 'Disaster & Evacuation Centers',
+              color: Colors.deepOrange,
+              onTap: () => context.go('/evac-map'),
               isFullWidth: true,
             ),
             

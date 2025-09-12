@@ -43,11 +43,6 @@ class MainNavigation extends StatelessWidget {
             label: 'Notifications',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.rocket_launch_outlined),
-            activeIcon: Icon(Icons.rocket_launch),
-            label: 'Phase 2',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             activeIcon: Icon(Icons.person),
             label: 'Profile',
@@ -69,15 +64,19 @@ class MainNavigation extends StatelessWidget {
       case AppRouter.civilRegistry:
       case AppRouter.permits:
       case AppRouter.socialPrograms:
+      case '/queue-management':
+      case '/obos-application':
+      case '/transport-services':
         return 1;
       case AppRouter.community:
+      case '/community-groups':
+      case '/evac-map':
         return 2;
       case '/notifications':
         return 3;
-      case '/phase2':
-        return 4;
       case AppRouter.profile:
-        return 5;
+      case '/gamification':
+        return 4;
       default:
         return 0;
     }
@@ -98,9 +97,6 @@ class MainNavigation extends StatelessWidget {
         context.go('/notifications');
         break;
       case 4:
-        context.go('/phase2');
-        break;
-      case 5:
         context.go(AppRouter.profile);
         break;
     }
@@ -206,6 +202,33 @@ class ServicesDrawer extends StatelessWidget {
                     context.go(AppRouter.socialPrograms);
                   },
                 ),
+                _ServiceTile(
+                  icon: Icons.queue,
+                  title: 'Queue Management',
+                  subtitle: 'Digital Queue & Ticketing',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/queue-management');
+                  },
+                ),
+                _ServiceTile(
+                  icon: Icons.construction,
+                  title: 'Building Permits',
+                  subtitle: 'OBOS Applications',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/obos-application');
+                  },
+                ),
+                _ServiceTile(
+                  icon: Icons.local_taxi,
+                  title: 'Transport Services',
+                  subtitle: 'Tricycle, Parking, Violations',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/transport-services');
+                  },
+                ),
                 const Divider(),
                 _ServiceTile(
                   icon: Icons.people,
@@ -214,6 +237,24 @@ class ServicesDrawer extends StatelessWidget {
                   onTap: () {
                     Navigator.pop(context);
                     context.go(AppRouter.community);
+                  },
+                ),
+                _ServiceTile(
+                  icon: Icons.groups,
+                  title: 'Community Groups',
+                  subtitle: 'Discussion & Moderation',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/community-groups');
+                  },
+                ),
+                _ServiceTile(
+                  icon: Icons.map,
+                  title: 'EVAC Map',
+                  subtitle: 'Disaster & Evacuation',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/evac-map');
                   },
                 ),
               ],

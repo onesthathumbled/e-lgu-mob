@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../shared/widgets/shadcn_components.dart';
 import '../../../../shared/widgets/main_navigation.dart';
 import '../../../documents/presentation/pages/document_generator_demo_page.dart';
+import '../../../phase2/gamification/presentation/pages/gamification_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -87,6 +88,19 @@ class ProfilePage extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const DocumentGeneratorDemoPage(),
+                  ),
+                );
+              },
+            ),
+            
+            _ProfileTile(
+              icon: Icons.emoji_events_outlined,
+              title: 'Rewards & Gamification',
+              subtitle: 'View points, badges, and leaderboards',
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const GamificationPage(),
                   ),
                 );
               },
