@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../shared/widgets/shadcn_components.dart';
 import '../../../../shared/widgets/main_navigation.dart';
+import 'community_events_page.dart';
+import 'community_jobs_page.dart';
+import 'community_marketplace_page.dart';
 
 class CommunityPage extends StatelessWidget {
   const CommunityPage({super.key});
@@ -58,8 +61,10 @@ class CommunityPage extends StatelessWidget {
               category: 'Community',
               estimatedTime: 'Instant',
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Local events coming soon')),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CommunityEventsPage(),
+                  ),
                 );
               },
             ),
@@ -70,8 +75,10 @@ class CommunityPage extends StatelessWidget {
               category: 'Community',
               estimatedTime: 'Instant',
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Job board coming soon')),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CommunityJobsPage(),
+                  ),
                 );
               },
             ),
@@ -82,8 +89,10 @@ class CommunityPage extends StatelessWidget {
               category: 'Community',
               estimatedTime: 'Instant',
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Local marketplace coming soon')),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CommunityMarketplacePage(),
+                  ),
                 );
               },
             ),

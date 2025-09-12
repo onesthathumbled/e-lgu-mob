@@ -158,7 +158,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LGU Mobile'),
+        title: const Text('e-LGU'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -198,7 +198,7 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Welcome to LGU Mobile',
+                    'Welcome to e-LGU',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,

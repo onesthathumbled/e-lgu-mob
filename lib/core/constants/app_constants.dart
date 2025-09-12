@@ -1,7 +1,7 @@
 /// Application-wide constants
 class AppConstants {
   // App Information
-  static const String appName = 'LGU Mobile';
+  static const String appName = 'e-LGU';
   static const String appVersion = '1.0.0';
   static const String appDescription = 'Local Government Unit Mobile Application';
   
