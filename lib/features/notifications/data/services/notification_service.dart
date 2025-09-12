@@ -103,12 +103,11 @@ class NotificationService {
     );
 
     // Note: zonedSchedule requires timezone package for TZDateTime
-    // For now, using regular schedule with DateTime
-    await _notifications.schedule(
+    // For now, using show notification instead of schedule
+    await _notifications.show(
       notification.id.hashCode,
       notification.title,
       notification.body,
-      scheduledDate,
       details,
       payload: notification.actionUrl,
     );

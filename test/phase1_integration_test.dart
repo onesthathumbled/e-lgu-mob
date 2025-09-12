@@ -27,12 +27,16 @@ void main() {
       await tester.pumpWidget(const LguApp());
       await tester.pumpAndSettle();
 
-      // Navigate to login page
-      await tester.tap(find.text('Sign In'));
+      // Wait for splash screen to complete and navigate to onboarding
+      await tester.pump(const Duration(seconds: 4));
+      await tester.pumpAndSettle();
+
+      // Navigate to login page from onboarding
+      await tester.tap(find.text('Get Started'));
       await tester.pumpAndSettle();
 
       // Verify login page elements
-      expect(find.text('Welcome to e-LGU'), findsOneWidget);
+      expect(find.text('Welcome Back'), findsOneWidget);
       expect(find.text('Email'), findsOneWidget);
       expect(find.text('Password'), findsOneWidget);
       expect(find.text('Sign In'), findsOneWidget);
@@ -360,8 +364,15 @@ void main() {
 
 /// Helper function to login user
 Future<void> _loginUser(WidgetTester tester) async {
-  await tester.tap(find.text('Sign In'));
+  // Wait for splash screen to complete and navigate to onboarding
+  await tester.pump(const Duration(seconds: 4));
   await tester.pumpAndSettle();
+  
+  // Navigate to login page from onboarding
+  await tester.tap(find.text('Get Started'));
+  await tester.pumpAndSettle();
+  
+  // Enter credentials and login
   await tester.enterText(find.byType(TextField).first, 'john.doe@email.com');
   await tester.enterText(find.byType(TextField).last, 'password123');
   await tester.tap(find.text('Sign In'));

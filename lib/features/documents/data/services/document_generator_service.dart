@@ -1,10 +1,8 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import '../../domain/entities/document_entity.dart';
 
 /// Document generator service for creating PDFs
@@ -563,10 +561,8 @@ class DocumentGeneratorService {
   Future<void> shareDocument(DocumentEntity document) async {
     if (document.filePath == null) return;
     
-    final file = File(document.filePath!);
-    
     // In a real app, this would use a sharing plugin
-    print('Sharing document: ${document.title}');
-    print('File path: ${document.filePath}');
+    // Sharing document: ${document.title}
+    // File path: ${document.filePath}
   }
 }

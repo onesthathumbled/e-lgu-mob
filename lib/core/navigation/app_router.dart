@@ -12,6 +12,7 @@ import '../../features/permits/presentation/pages/permits_page.dart';
 import '../../features/social_programs/presentation/pages/social_programs_page.dart';
 import '../../features/community/presentation/pages/community_page.dart';
 import '../../features/notifications/presentation/pages/notifications_page.dart';
+import '../../features/phase2/presentation/pages/phase2_dashboard_page.dart';
 import '../../shared/widgets/main_navigation.dart';
 import '../../shared/widgets/onboarding_page.dart';
 import '../../shared/widgets/splash_page.dart';
@@ -85,6 +86,11 @@ class AppRouter {
             path: '/notifications',
             name: 'notifications',
             builder: (context, state) => const NotificationsPage(),
+          ),
+          GoRoute(
+            path: '/phase2',
+            name: 'phase2',
+            builder: (context, state) => const Phase2DashboardPage(),
           ),
           GoRoute(
             path: businessPermits,

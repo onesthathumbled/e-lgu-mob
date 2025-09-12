@@ -117,20 +117,28 @@ void main() {
         postalCode: '1234',
       );
 
+      final businessAddress = BusinessAddressEntity(
+        street: '123 Main St',
+        barangay: 'Barangay 1',
+        city: 'Sample City',
+        province: 'Sample Province',
+        postalCode: '1234',
+      );
+
       final permit = BusinessPermitEntity(
         id: 'permit_001',
         userId: 'user_001',
         businessName: 'Sample Business',
         businessType: 'Retail',
-        businessAddress: address,
+        businessAddress: businessAddress,
         ownerName: 'John Doe',
-        ownerAddress: address,
+        ownerAddress: '123 Main St, Barangay 1, Sample City',
         contactNumber: '+63 912 345 6789',
         email: 'john.doe@email.com',
         businessDescription: 'A sample retail business',
         capitalization: 100000.0,
         employeesCount: 5,
-        status: 'Pending',
+        status: BusinessPermitStatus.pending,
         submittedAt: DateTime.now(),
       );
 
@@ -139,11 +147,11 @@ void main() {
       expect(permit.businessType, 'Retail');
       expect(permit.capitalization, 100000.0);
       expect(permit.employeesCount, 5);
-      expect(permit.status, 'Pending');
+      expect(permit.status, BusinessPermitStatus.pending);
     });
 
     test('BusinessPermitEntity should support optional fields', () {
-      final address = AddressEntity(
+      final businessAddress = BusinessAddressEntity(
         street: '123 Business St',
         barangay: 'Barangay 1',
         city: 'Sample City',
@@ -156,22 +164,22 @@ void main() {
         userId: 'user_001',
         businessName: 'Sample Business',
         businessType: 'Retail',
-        businessAddress: address,
+        businessAddress: businessAddress,
         ownerName: 'John Doe',
-        ownerAddress: address,
+        ownerAddress: '123 Business St, Barangay 1, Sample City',
         contactNumber: '+63 912 345 6789',
         email: 'john.doe@email.com',
         businessDescription: 'A sample retail business',
         capitalization: 100000.0,
         employeesCount: 5,
-        status: 'Approved',
+        status: BusinessPermitStatus.approved,
         submittedAt: DateTime.now(),
         processedAt: DateTime.now().add(const Duration(days: 1)),
         completedAt: DateTime.now().add(const Duration(days: 7)),
         notes: 'Application approved',
       );
 
-      expect(permit.status, 'Approved');
+      expect(permit.status, BusinessPermitStatus.approved);
       expect(permit.processedAt, isNotNull);
       expect(permit.completedAt, isNotNull);
       expect(permit.notes, 'Application approved');
