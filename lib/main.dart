@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'core/constants/app_constants.dart';
 import 'core/navigation/app_router.dart';
+import 'features/auth/presentation/providers/auth_providers.dart';
 import 'theme/shadcn_theme.dart';
 
 void main() async {
@@ -11,9 +13,15 @@ void main() async {
   // Initialize Hive for local storage
   await Hive.initFlutter();
   
+  // Initialize SharedPreferences
+  final sharedPreferences = await SharedPreferences.getInstance();
+  
   runApp(
-    const ProviderScope(
-      child: LguApp(),
+    ProviderScope(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+      ],
+      child: const LguApp(),
     ),
   );
 }

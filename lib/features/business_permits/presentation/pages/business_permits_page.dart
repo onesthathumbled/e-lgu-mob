@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../shared/widgets/shadcn_components.dart';
 import '../../../../shared/widgets/main_navigation.dart';
+import 'new_business_permit_page.dart';
 
 /// Business Permits page
 class BusinessPermitsPage extends StatelessWidget {
@@ -68,10 +69,9 @@ class BusinessPermitsPage extends StatelessWidget {
               category: 'Business',
               estimatedTime: '5-7 business days',
               onTap: () {
-                // TODO: Navigate to new business permit form
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('New Business Permit form coming soon'),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const NewBusinessPermitPage(),
                   ),
                 );
               },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../shared/widgets/shadcn_components.dart';
 import '../../../../shared/widgets/main_navigation.dart';
+import 'digital_id_registration_page.dart';
 
 class DigitalIdPage extends StatelessWidget {
   const DigitalIdPage({super.key});
@@ -58,8 +59,10 @@ class DigitalIdPage extends StatelessWidget {
               category: 'Identification',
               estimatedTime: '7-10 business days',
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Digital ID application coming soon')),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const DigitalIdRegistrationPage(),
+                  ),
                 );
               },
             ),

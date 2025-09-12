@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../shared/widgets/shadcn_components.dart';
 import '../../../../shared/widgets/main_navigation.dart';
+import 'property_tax_payment_page.dart';
 
 /// Property Tax page
 class PropertyTaxPage extends StatelessWidget {
@@ -110,10 +111,9 @@ class PropertyTaxPage extends StatelessWidget {
               category: 'Property',
               estimatedTime: 'Instant',
               onTap: () {
-                // TODO: Navigate to payment page
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Property tax payment coming soon'),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const PropertyTaxPaymentPage(),
                   ),
                 );
               },

@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/navigation/app_router.dart';
 import '../../../../shared/widgets/shadcn_components.dart';
+import '../providers/auth_state_providers.dart';
 
 /// Login page for user authentication
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _isLoading = false;
   bool _obscurePassword = true;
 
   @override
@@ -28,25 +29,57 @@ class _LoginPageState extends State<LoginPage> {
   void _login() async {
     if (!_formKey.currentState!.validate()) return;
 
-    setState(() {
-      _isLoading = true;
-    });
+    final authNotifier = ref.read(authStateProvider.notifier);
+    
+    await authNotifier.login(
+      email: _emailController.text.trim(),
+      password: _passwordController.text,
+    );
+  }
 
-    // TODO: Implement actual login logic
-    await Future.delayed(const Duration(seconds: 2));
-
-    if (mounted) {
-      setState(() {
-        _isLoading = false;
-      });
-      
-      // Navigate to home page
-      context.go(AppRouter.home);
-    }
+  void _loginWithEgovPh() async {
+    final authNotifier = ref.read(authStateProvider.notifier);
+    
+    // Mock eGovPH SSO token
+    await authNotifier.loginWithEgovPh(
+      ssoToken: 'mock_egovph_token_12345',
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authStateProvider);
+    
+    // Listen to auth state changes
+    ref.listen<AuthState>(authStateProvider, (previous, next) {
+      switch (next) {
+        case AuthInitial():
+        case AuthLoading():
+          break;
+        case AuthAuthenticated():
+          // Navigate to home page on successful login
+          context.go(AppRouter.home);
+          break;
+        case AuthUnauthenticated():
+          break;
+        case AuthError():
+          // Show error message
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(next.message),
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ),
+          );
+          break;
+        case AuthPasswordResetEmailSent():
+        case AuthPasswordResetSuccess():
+        case AuthPasswordChanged():
+        case AuthEmailVerified():
+        case AuthVerificationEmailSent():
+          break;
+      }
+    });
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -102,6 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   prefixIcon: const Icon(Icons.email_outlined),
+                  helperText: 'Use john.doe@email.com for demo',
                 ),
                 
                 const SizedBox(height: 16),
@@ -113,6 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _passwordController,
                   obscureText: _obscurePassword,
                   prefixIcon: const Icon(Icons.lock_outline),
+                  helperText: 'Use password123 for demo',
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
@@ -144,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                 ShadButton(
                   text: 'Sign In',
                   onPressed: _login,
-                  isLoading: _isLoading,
+                  isLoading: authState is AuthLoading,
                   fullWidth: true,
                 ),
                 
@@ -173,14 +208,8 @@ class _LoginPageState extends State<LoginPage> {
                 ShadButton(
                   text: 'Sign in with eGovPH',
                   variant: ShadButtonVariant.outline,
-                  onPressed: () {
-                    // TODO: Implement eGovPH SSO
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('eGovPH SSO integration coming soon'),
-                      ),
-                    );
-                  },
+                  onPressed: _loginWithEgovPh,
+                  isLoading: authState is AuthLoading,
                   icon: const Icon(Icons.security),
                   fullWidth: true,
                 ),
