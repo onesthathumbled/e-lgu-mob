@@ -18,6 +18,13 @@ import '../../features/phase2/transport/presentation/pages/transport_services_pa
 import '../../features/phase2/evac_map/presentation/pages/evac_map_page.dart';
 import '../../features/phase2/community_groups/presentation/pages/community_groups_page.dart';
 import '../../features/phase2/gamification/presentation/pages/gamification_page.dart';
+import '../../features/phase3/facility_bookings/presentation/pages/facility_bookings_page.dart';
+import '../../features/phase3/events_calendar/presentation/pages/events_calendar_page.dart';
+import '../../features/phase3/pet_registration/presentation/pages/pet_registration_page.dart';
+import '../../features/phase3/waste_schedule/presentation/pages/waste_schedule_page.dart';
+import '../../features/phase3/hazard_reporting/presentation/pages/hazard_reporting_page.dart';
+import '../../features/phase3/transparency_dashboards/presentation/pages/transparency_dashboards_page.dart';
+import '../../features/phase3/open_data_portal/presentation/pages/open_data_portal_page.dart';
 import '../../shared/widgets/main_navigation.dart';
 import '../../shared/widgets/onboarding_page.dart';
 import '../../shared/widgets/splash_page.dart';
@@ -121,6 +128,41 @@ class AppRouter {
             path: '/gamification',
             name: 'gamification',
             builder: (context, state) => const GamificationPage(),
+          ),
+          GoRoute(
+            path: '/facility-bookings',
+            name: 'facility-bookings',
+            builder: (context, state) => const FacilityBookingsPage(),
+          ),
+          GoRoute(
+            path: '/events-calendar',
+            name: 'events-calendar',
+            builder: (context, state) => const EventsCalendarPage(),
+          ),
+          GoRoute(
+            path: '/pet-registration',
+            name: 'pet-registration',
+            builder: (context, state) => const PetRegistrationPage(),
+          ),
+          GoRoute(
+            path: '/waste-schedule',
+            name: 'waste-schedule',
+            builder: (context, state) => const WasteSchedulePage(),
+          ),
+          GoRoute(
+            path: '/hazard-reporting',
+            name: 'hazard-reporting',
+            builder: (context, state) => const HazardReportingPage(),
+          ),
+          GoRoute(
+            path: '/transparency-dashboards',
+            name: 'transparency-dashboards',
+            builder: (context, state) => const TransparencyDashboardsPage(),
+          ),
+          GoRoute(
+            path: '/open-data-portal',
+            name: 'open-data-portal',
+            builder: (context, state) => const OpenDataPortalPage(),
           ),
           GoRoute(
             path: businessPermits,
@@ -341,6 +383,27 @@ class HomePage extends StatelessWidget {
                   color: Colors.amber,
                   onTap: () => context.go('/transport-services'),
                 ),
+                _ServiceCard(
+                  icon: Icons.event,
+                  title: 'Facility Bookings',
+                  subtitle: 'Reserve halls, gyms, courts',
+                  color: Colors.indigo,
+                  onTap: () => context.go('/facility-bookings'),
+                ),
+                _ServiceCard(
+                  icon: Icons.calendar_today,
+                  title: 'Events Calendar',
+                  subtitle: 'Community events & RSVP',
+                  color: Colors.pink,
+                  onTap: () => context.go('/events-calendar'),
+                ),
+                _ServiceCard(
+                  icon: Icons.pets,
+                  title: 'Pet Registration',
+                  subtitle: 'Register pets & vaccinations',
+                  color: Colors.brown,
+                  onTap: () => context.go('/pet-registration'),
+                ),
               ],
             ),
             
@@ -384,6 +447,50 @@ class HomePage extends StatelessWidget {
               subtitle: 'Disaster & Evacuation Centers',
               color: Colors.deepOrange,
               onTap: () => context.go('/evac-map'),
+              isFullWidth: true,
+            ),
+            
+            const SizedBox(height: 16),
+            
+            _ServiceCard(
+              icon: Icons.delete,
+              title: 'Waste Schedule',
+              subtitle: 'Garbage collection schedule',
+              color: Colors.green,
+              onTap: () => context.go('/waste-schedule'),
+              isFullWidth: true,
+            ),
+            
+            const SizedBox(height: 16),
+            
+            _ServiceCard(
+              icon: Icons.report_problem,
+              title: 'Hazard Reporting',
+              subtitle: 'Report road damage, flooding',
+              color: Colors.red,
+              onTap: () => context.go('/hazard-reporting'),
+              isFullWidth: true,
+            ),
+            
+            const SizedBox(height: 16),
+            
+            _ServiceCard(
+              icon: Icons.analytics,
+              title: 'Transparency Dashboard',
+              subtitle: 'SLA metrics & collection stats',
+              color: Colors.blue,
+              onTap: () => context.go('/transparency-dashboards'),
+              isFullWidth: true,
+            ),
+            
+            const SizedBox(height: 16),
+            
+            _ServiceCard(
+              icon: Icons.dataset,
+              title: 'Open Data Portal',
+              subtitle: 'Public datasets & information',
+              color: Colors.purple,
+              onTap: () => context.go('/open-data-portal'),
               isFullWidth: true,
             ),
             

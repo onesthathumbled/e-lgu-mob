@@ -66,6 +66,18 @@ dependencies:
   pdf: ^3.10.7
   printing: ^5.11.1
   
+  # Charting library for Phase 3 dashboards
+  fl_chart: ^0.66.0
+  
+  # Calendar and date picker
+  table_calendar: ^3.0.9
+  
+  # Location services
+  geolocator: ^10.1.0
+  
+  # CSV export
+  csv: ^5.0.2
+  
   # Date and time utilities
   timeago: ^3.6.1
   

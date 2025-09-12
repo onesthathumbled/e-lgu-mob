@@ -67,10 +67,17 @@ class MainNavigation extends StatelessWidget {
       case '/queue-management':
       case '/obos-application':
       case '/transport-services':
+      case '/facility-bookings':
+      case '/events-calendar':
+      case '/pet-registration':
+      case '/waste-schedule':
+      case '/hazard-reporting':
         return 1;
       case AppRouter.community:
       case '/community-groups':
       case '/evac-map':
+      case '/transparency-dashboards':
+      case '/open-data-portal':
         return 2;
       case '/notifications':
         return 3;
@@ -229,6 +236,51 @@ class ServicesDrawer extends StatelessWidget {
                     context.go('/transport-services');
                   },
                 ),
+                _ServiceTile(
+                  icon: Icons.event,
+                  title: 'Facility Bookings',
+                  subtitle: 'Reserve halls, gyms, courts',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/facility-bookings');
+                  },
+                ),
+                _ServiceTile(
+                  icon: Icons.calendar_today,
+                  title: 'Events Calendar',
+                  subtitle: 'Community events & RSVP',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/events-calendar');
+                  },
+                ),
+                _ServiceTile(
+                  icon: Icons.pets,
+                  title: 'Pet Registration',
+                  subtitle: 'Register pets & vaccinations',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/pet-registration');
+                  },
+                ),
+                _ServiceTile(
+                  icon: Icons.delete,
+                  title: 'Waste Schedule',
+                  subtitle: 'Garbage collection schedule',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/waste-schedule');
+                  },
+                ),
+                _ServiceTile(
+                  icon: Icons.report_problem,
+                  title: 'Hazard Reporting',
+                  subtitle: 'Report road damage, flooding',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/hazard-reporting');
+                  },
+                ),
                 const Divider(),
                 _ServiceTile(
                   icon: Icons.people,
@@ -255,6 +307,24 @@ class ServicesDrawer extends StatelessWidget {
                   onTap: () {
                     Navigator.pop(context);
                     context.go('/evac-map');
+                  },
+                ),
+                _ServiceTile(
+                  icon: Icons.analytics,
+                  title: 'Transparency Dashboard',
+                  subtitle: 'SLA metrics & collection stats',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/transparency-dashboards');
+                  },
+                ),
+                _ServiceTile(
+                  icon: Icons.dataset,
+                  title: 'Open Data Portal',
+                  subtitle: 'Public datasets & information',
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.go('/open-data-portal');
                   },
                 ),
               ],
