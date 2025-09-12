@@ -99,8 +99,6 @@ class ShadcnTheme {
         onSecondary: secondaryForeground,
         surface: background,
         onSurface: foreground,
-        background: background,
-        onBackground: foreground,
         error: destructive,
         onError: destructiveForeground,
         outline: border,
@@ -126,19 +124,19 @@ class ShadcnTheme {
         ),
         headlineLarge: TextStyle(
           fontSize: fontSizeLg,
-          fontWeight: FontWeight.semiBold,
+          fontWeight: FontWeight.w600,
           color: foreground,
           height: lineHeightNormal,
         ),
         headlineMedium: TextStyle(
           fontSize: fontSizeBase,
-          fontWeight: FontWeight.semiBold,
+          fontWeight: FontWeight.w600,
           color: foreground,
           height: lineHeightNormal,
         ),
         headlineSmall: TextStyle(
           fontSize: fontSizeSm,
-          fontWeight: FontWeight.semiBold,
+          fontWeight: FontWeight.w600,
           color: foreground,
           height: lineHeightNormal,
         ),
@@ -162,19 +160,19 @@ class ShadcnTheme {
         ),
         labelLarge: TextStyle(
           fontSize: fontSizeSm,
-          fontWeight: FontWeight.medium,
+          fontWeight: FontWeight.w500,
           color: foreground,
           height: lineHeightNormal,
         ),
         labelMedium: TextStyle(
           fontSize: fontSizeXs,
-          fontWeight: FontWeight.medium,
+          fontWeight: FontWeight.w500,
           color: foreground,
           height: lineHeightNormal,
         ),
         labelSmall: TextStyle(
           fontSize: fontSizeXs,
-          fontWeight: FontWeight.medium,
+          fontWeight: FontWeight.w500,
           color: mutedForeground,
           height: lineHeightNormal,
         ),
@@ -194,7 +192,7 @@ class ShadcnTheme {
           ),
           textStyle: const TextStyle(
             fontSize: fontSizeSm,
-            fontWeight: FontWeight.medium,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -211,7 +209,7 @@ class ShadcnTheme {
           ),
           textStyle: const TextStyle(
             fontSize: fontSizeSm,
-            fontWeight: FontWeight.medium,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -227,7 +225,7 @@ class ShadcnTheme {
           ),
           textStyle: const TextStyle(
             fontSize: fontSizeSm,
-            fontWeight: FontWeight.medium,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -255,7 +253,7 @@ class ShadcnTheme {
           vertical: space2,
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: card,
         elevation: 0,
         shadowColor: Colors.transparent,
@@ -273,7 +271,7 @@ class ShadcnTheme {
         surfaceTintColor: Colors.transparent,
         titleTextStyle: TextStyle(
           fontSize: fontSizeLg,
-          fontWeight: FontWeight.semiBold,
+          fontWeight: FontWeight.w600,
           color: foreground,
         ),
       ),

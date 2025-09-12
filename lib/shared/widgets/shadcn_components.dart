@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme/shadcn_theme.dart';
+import '../../theme/shadcn_theme.dart';
 
 /// Shadcn-inspired component library for Flutter
 /// Small, composable widgets following shadcn/ui patterns
@@ -27,8 +27,6 @@ class ShadButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    
     Widget buttonChild = Row(
       mainAxisSize: fullWidth ? MainAxisSize.max : MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -220,7 +218,7 @@ class ShadInput extends StatelessWidget {
           Text(
             label!,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
-              fontWeight: FontWeight.medium,
+              fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: ShadcnTheme.space2),
@@ -291,7 +289,7 @@ class ShadBanner extends StatelessWidget {
                   title,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                     color: colors.text,
-                    fontWeight: FontWeight.medium,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 if (description != null) ...[
@@ -504,7 +502,7 @@ class ServiceCard extends StatelessWidget {
                 child: Text(
                   title,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.semiBold,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
@@ -521,7 +519,7 @@ class ServiceCard extends StatelessWidget {
                   category,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: _getCategoryColor(),
-                    fontWeight: FontWeight.medium,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
@@ -564,7 +562,7 @@ class ServiceCard extends StatelessWidget {
                     'Unavailable',
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: ShadcnTheme.destructive,
-                      fontWeight: FontWeight.medium,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
