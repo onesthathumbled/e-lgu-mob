@@ -70,9 +70,9 @@ class ProfilePage extends StatelessWidget {
             
             const SizedBox(height: 24),
             
-            // Profile sections
+            // My Services Section
             Text(
-              'Account Settings',
+              'My Services',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -102,6 +102,51 @@ class ProfilePage extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => const GamificationPage(),
                   ),
+                );
+              },
+            ),
+            
+            _ProfileTile(
+              icon: Icons.history,
+              title: 'Application History',
+              subtitle: 'View all your submitted applications',
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Application history coming soon')),
+                );
+              },
+            ),
+            
+            _ProfileTile(
+              icon: Icons.payment,
+              title: 'Payment History',
+              subtitle: 'View your payment transactions',
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Payment history coming soon')),
+                );
+              },
+            ),
+            
+            const SizedBox(height: 24),
+            
+            // Account Settings Section
+            Text(
+              'Account Settings',
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+            
+            _ProfileTile(
+              icon: Icons.person_outline,
+              title: 'Personal Information',
+              subtitle: 'Update your personal details',
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Personal information settings coming soon')),
                 );
               },
             ),
@@ -139,6 +184,18 @@ class ProfilePage extends StatelessWidget {
               },
             ),
             
+            const SizedBox(height: 24),
+            
+            // Support & Information Section
+            Text(
+              'Support & Information',
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+            
             _ProfileTile(
               icon: Icons.help_outline,
               title: 'Help & Support',
@@ -146,6 +203,28 @@ class ProfilePage extends StatelessWidget {
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Help & support coming soon')),
+                );
+              },
+            ),
+            
+            _ProfileTile(
+              icon: Icons.feedback_outlined,
+              title: 'Feedback',
+              subtitle: 'Send feedback and suggestions',
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Feedback form coming soon')),
+                );
+              },
+            ),
+            
+            _ProfileTile(
+              icon: Icons.privacy_tip_outlined,
+              title: 'Privacy Policy',
+              subtitle: 'Read our privacy policy',
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Privacy policy coming soon')),
                 );
               },
             ),

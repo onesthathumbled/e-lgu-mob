@@ -301,9 +301,9 @@ class HomePage extends StatelessWidget {
             
             const SizedBox(height: 24),
             
-            // Quick Services Section
+            // Quick Actions Section
             Text(
-              'Quick Services',
+              'Quick Actions',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -311,7 +311,7 @@ class HomePage extends StatelessWidget {
             
             const SizedBox(height: 16),
             
-            // Services Grid
+            // Quick Actions Grid
             GridView.count(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -334,6 +334,44 @@ class HomePage extends StatelessWidget {
                   color: Colors.green,
                   onTap: () => context.go(AppRouter.propertyTax),
                 ),
+                _ServiceCard(
+                  icon: Icons.credit_card,
+                  title: 'Digital ID',
+                  subtitle: 'Local ID Card',
+                  color: Colors.purple,
+                  onTap: () => context.go(AppRouter.digitalId),
+                ),
+                _ServiceCard(
+                  icon: Icons.queue,
+                  title: 'Queue Management',
+                  subtitle: 'Digital Queue',
+                  color: Colors.orange,
+                  onTap: () => context.go('/queue-management'),
+                ),
+              ],
+            ),
+            
+            const SizedBox(height: 24),
+            
+            // Government Services Section
+            Text(
+              'Government Services',
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+            
+            // Government Services Grid
+            GridView.count(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: 1.2,
+              children: [
                 _ServiceCard(
                   icon: Icons.credit_card,
                   title: 'Digital ID',
@@ -496,7 +534,59 @@ class HomePage extends StatelessWidget {
             
             const SizedBox(height: 24),
             
-            // Information Banner
+            // Emergency & Important Info Section
+            Text(
+              'Emergency & Important Info',
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+            
+            // Emergency Contacts
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.red.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: Colors.red.withValues(alpha: 0.3),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.emergency,
+                        color: Colors.red,
+                        size: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Emergency Contacts',
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  _buildEmergencyContact('Police', '911', Icons.local_police),
+                  _buildEmergencyContact('Fire Department', '911', Icons.local_fire_department),
+                  _buildEmergencyContact('Medical Emergency', '911', Icons.medical_services),
+                  _buildEmergencyContact('LGU Hotline', '(02) 123-4567', Icons.phone),
+                ],
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+            
+            // Recent Announcements
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
@@ -507,11 +597,52 @@ class HomePage extends StatelessWidget {
                   color: Colors.blue.withValues(alpha: 0.3),
                 ),
               ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.campaign,
+                        color: Colors.blue,
+                        size: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Recent Announcements',
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  _buildAnnouncement('New Business Permit Online Application Available', 'Apply for business permits online with faster processing.'),
+                  _buildAnnouncement('Property Tax Payment Extension', 'Deadline extended to December 31, 2024.'),
+                  _buildAnnouncement('Community Clean-up Drive', 'Join us this Saturday for a community clean-up event.'),
+                ],
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+            
+            // Information Banner
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.green.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: Colors.green.withValues(alpha: 0.3),
+                ),
+              ),
               child: Row(
                 children: [
                   Icon(
                     Icons.info_outline,
-                    color: Colors.blue,
+                    color: Colors.green,
                     size: 24,
                   ),
                   const SizedBox(width: 12),
@@ -519,7 +650,7 @@ class HomePage extends StatelessWidget {
                     child: Text(
                       'All services are available 24/7. For assistance, contact the LGU hotline.',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.blue.shade700,
+                        color: Colors.green.shade700,
                       ),
                     ),
                   ),
@@ -528,6 +659,59 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+  
+  Widget _buildEmergencyContact(String service, String number, IconData icon) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            size: 16,
+            color: Colors.red,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            service,
+            style: const TextStyle(fontWeight: FontWeight.w500),
+          ),
+          const Spacer(),
+          Text(
+            number,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.red,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  
+  Widget _buildAnnouncement(String title, String description) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+            ),
+          ),
+          Text(
+            description,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.grey.shade600,
+            ),
+          ),
+        ],
       ),
     );
   }

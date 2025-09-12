@@ -11,6 +11,20 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
+  String _selectedFilter = 'All';
+  final List<String> _filterOptions = [
+    'All',
+    'Unread',
+    'Emergency',
+    'Business Permits',
+    'Property Tax',
+    'Community',
+    'Queue Management',
+    'Waste Management',
+    'Hazard Reporting',
+    'System',
+  ];
+  
   // Mock notifications data
   List<NotificationEntity> _notifications = [
     NotificationEntity(
@@ -71,7 +85,60 @@ class _NotificationsPageState extends State<NotificationsPage> {
       priority: NotificationPriority.low,
       category: 'System',
     ),
+    NotificationEntity(
+      id: 'notif_007',
+      title: 'Community Event',
+      body: 'Join the community clean-up drive this Saturday at 8:00 AM in the town plaza.',
+      type: NotificationType.announcement,
+      createdAt: DateTime.now().subtract(const Duration(hours: 1)),
+      priority: NotificationPriority.normal,
+      category: 'Community',
+      actionUrl: '/community-events',
+    ),
+    NotificationEntity(
+      id: 'notif_008',
+      title: 'Queue Update',
+      body: 'Your queue number 15 is next. Please proceed to Window 3.',
+      type: NotificationType.appointment,
+      createdAt: DateTime.now().subtract(const Duration(minutes: 30)),
+      priority: NotificationPriority.high,
+      category: 'Queue Management',
+      actionUrl: '/queue-management',
+    ),
+    NotificationEntity(
+      id: 'notif_009',
+      title: 'Waste Collection',
+      body: 'Garbage collection is scheduled for tomorrow. Please place your bins outside by 6:00 AM.',
+      type: NotificationType.announcement,
+      createdAt: DateTime.now().subtract(const Duration(hours: 3)),
+      priority: NotificationPriority.normal,
+      category: 'Waste Management',
+      actionUrl: '/waste-schedule',
+    ),
+    NotificationEntity(
+      id: 'notif_010',
+      title: 'Hazard Report Update',
+      body: 'Your reported pothole on Main Street has been assigned to the Public Works Department.',
+      type: NotificationType.applicationStatus,
+      createdAt: DateTime.now().subtract(const Duration(hours: 4)),
+      priority: NotificationPriority.normal,
+      category: 'Hazard Reporting',
+      actionUrl: '/hazard-reporting',
+    ),
   ];
+
+  List<NotificationEntity> _getFilteredNotifications() {
+    switch (_selectedFilter) {
+      case 'All':
+        return _notifications;
+      case 'Unread':
+        return _notifications.where((n) => n.isUnread).toList();
+      case 'Emergency':
+        return _notifications.where((n) => n.category == 'Emergency').toList();
+      default:
+        return _notifications.where((n) => n.category == _selectedFilter).toList();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,14 +197,42 @@ class _NotificationsPageState extends State<NotificationsPage> {
             ),
           ),
           
+          // Filter options
+          Container(
+            height: 50,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: _filterOptions.length,
+              itemBuilder: (context, index) {
+                final filter = _filterOptions[index];
+                final isSelected = _selectedFilter == filter;
+                return Container(
+                  margin: const EdgeInsets.only(right: 8),
+                  child: FilterChip(
+                    label: Text(filter),
+                    selected: isSelected,
+                    onSelected: (selected) {
+                      setState(() {
+                        _selectedFilter = filter;
+                      });
+                    },
+                    selectedColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
+                    checkmarkColor: Theme.of(context).colorScheme.primary,
+                  ),
+                );
+              },
+            ),
+          ),
+          
           // Notifications list
           Expanded(
-            child: _notifications.isEmpty
+            child: _getFilteredNotifications().isEmpty
                 ? _buildEmptyState()
                 : ListView.builder(
-                    itemCount: _notifications.length,
+                    itemCount: _getFilteredNotifications().length,
                     itemBuilder: (context, index) {
-                      final notification = _notifications[index];
+                      final notification = _getFilteredNotifications()[index];
                       return _NotificationCard(
                         notification: notification,
                         onTap: () => _handleNotificationTap(notification),
