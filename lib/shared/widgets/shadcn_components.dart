@@ -452,7 +452,7 @@ class _ShadSkeletonState extends State<ShadSkeleton>
                 end: Alignment.centerRight,
                 colors: [
                   ShadcnTheme.muted,
-                  ShadcnTheme.muted.withOpacity(0.5),
+                  ShadcnTheme.muted.withValues(alpha: 0.5),
                   ShadcnTheme.muted,
                 ],
                 stops: [
@@ -512,7 +512,7 @@ class ServiceCard extends StatelessWidget {
                   vertical: ShadcnTheme.space1,
                 ),
                 decoration: BoxDecoration(
-                  color: _getCategoryColor().withOpacity(0.1),
+                  color: _getCategoryColor().withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(ShadcnTheme.radiusSm),
                 ),
                 child: Text(
@@ -555,7 +555,7 @@ class ServiceCard extends StatelessWidget {
                     vertical: ShadcnTheme.space1,
                   ),
                   decoration: BoxDecoration(
-                    color: ShadcnTheme.destructive.withOpacity(0.1),
+                    color: ShadcnTheme.destructive.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(ShadcnTheme.radiusSm),
                   ),
                   child: Text(

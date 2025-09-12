@@ -43,7 +43,7 @@ class PropertyTaxPage extends StatelessWidget {
                   Text(
                     'Pay your real property taxes online, view payment history, and receive digital receipts.',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                 ],

@@ -151,7 +151,7 @@ class ShadBarChart extends StatelessWidget {
                   horizontalInterval: maxDataValue / 5,
                   getDrawingHorizontalLine: (value) {
                     return FlLine(
-                      color: theme.colorScheme.outline.withOpacity(0.2),
+                      color: theme.colorScheme.outline.withValues(alpha: 0.2),
                       strokeWidth: 1,
                     );
                   },
@@ -217,7 +217,7 @@ class ShadLineChart extends StatelessWidget {
                   horizontalInterval: range / 5,
                   getDrawingHorizontalLine: (value) {
                     return FlLine(
-                      color: theme.colorScheme.outline.withOpacity(0.2),
+                      color: theme.colorScheme.outline.withValues(alpha: 0.2),
                       strokeWidth: 1,
                     );
                   },
@@ -301,7 +301,7 @@ class ShadLineChart extends StatelessWidget {
                     ),
                     belowBarData: BarAreaData(
                       show: true,
-                      color: chartColor.withOpacity(0.1),
+                      color: chartColor.withValues(alpha: 0.1),
                     ),
                   ),
                 ],
@@ -520,7 +520,7 @@ class ShadMetricCard extends StatelessWidget {
                 child: Text(
                   title,
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.7),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
                 ),
               ),
@@ -568,7 +568,7 @@ class ShadMetricCard extends StatelessWidget {
             Text(
               subtitle!,
               style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.6),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
           ],

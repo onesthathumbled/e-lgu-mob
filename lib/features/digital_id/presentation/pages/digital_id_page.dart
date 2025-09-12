@@ -39,7 +39,7 @@ class DigitalIdPage extends StatelessWidget {
                   Text(
                     'Get your official LGU digital identification card with QR code verification.',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                 ],

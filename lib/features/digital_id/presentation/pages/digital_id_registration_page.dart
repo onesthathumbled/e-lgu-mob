@@ -147,7 +147,7 @@ class _DigitalIdRegistrationPageState extends ConsumerState<DigitalIdRegistratio
                     Text(
                       'Register for your official LGU digital identification card. This will serve as your digital identity within the local government.',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -390,7 +390,7 @@ class _DigitalIdRegistrationPageState extends ConsumerState<DigitalIdRegistratio
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(0.1),
+                  color: Colors.green.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: const Icon(
@@ -416,7 +416,7 @@ class _DigitalIdRegistrationPageState extends ConsumerState<DigitalIdRegistratio
               Text(
                 'Your digital ID registration has been submitted successfully. You will receive updates via email and SMS.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
                 textAlign: TextAlign.center,
               ),

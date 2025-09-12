@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../../../shared/widgets/shadcn_components.dart';
 import '../../../../../../shared/widgets/main_navigation.dart';
 import '../../domain/entities/hazard_report_entity.dart';
@@ -90,7 +89,7 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
             Text(
               'Report road damage, electrical issues, flooding, and other hazards in your community',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
             
@@ -101,9 +100,9 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.red.withOpacity(0.1),
+                color: Colors.red.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.red.withOpacity(0.3)),
+                border: Border.all(color: Colors.red.withValues(alpha: 0.3)),
               ),
               child: Row(
                 children: [
@@ -167,20 +166,20 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                     Icon(
                       Icons.report_problem,
                       size: 64,
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.3),
                     ),
                     const SizedBox(height: 16),
                     Text(
                       'No reports submitted yet',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       'Report hazards in your community to help keep everyone safe',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -270,7 +269,7 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: _getHazardTypeColor(report.hazardType).withOpacity(0.1),
+                    color: _getHazardTypeColor(report.hazardType).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
@@ -293,7 +292,7 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                       Text(
                         '${report.reportDate.day}/${report.reportDate.month}/${report.reportDate.year}',
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.6),
+                          color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                         ),
                       ),
                     ],
@@ -302,7 +301,7 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: _getStatusColor(report.status).withOpacity(0.1),
+                    color: _getStatusColor(report.status).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
@@ -313,9 +312,8 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
             const SizedBox(height: 12),
             
             // Report Details
@@ -334,7 +332,7 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                 Icon(
                   Icons.location_on,
                   size: 16,
-                  color: theme.colorScheme.onSurface.withOpacity(0.6),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
@@ -345,7 +343,6 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                 ),
               ],
             ),
-          
             const SizedBox(height: 8),
             
             Row(
@@ -353,7 +350,7 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                 Icon(
                   Icons.priority_high,
                   size: 16,
-                  color: theme.colorScheme.onSurface.withOpacity(0.6),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
                 const SizedBox(width: 8),
                 Text(
@@ -365,7 +362,6 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                 ),
               ],
             ),
-          
             if (report.assignedTo != null) ...[
               const SizedBox(height: 8),
               Row(
@@ -373,7 +369,7 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                   Icon(
                     Icons.assignment,
                     size: 16,
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                   const SizedBox(width: 8),
                   Text(
@@ -383,7 +379,6 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                 ],
               ),
             ],
-          
             if (report.estimatedResolutionDate != null) ...[
               const SizedBox(height: 8),
               Row(
@@ -391,7 +386,7 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                   Icon(
                     Icons.schedule,
                     size: 16,
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                   const SizedBox(width: 8),
                   Text(
@@ -401,7 +396,6 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                 ],
               ),
             ],
-          
             const SizedBox(height: 16),
             
             // Action Buttons
@@ -446,7 +440,7 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
@@ -606,7 +600,7 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: _getHazardTypeColor(report.hazardType).withOpacity(0.1),
+                      color: _getHazardTypeColor(report.hazardType).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
@@ -629,7 +623,7 @@ class _HazardReportingPageState extends State<HazardReportingPage> {
                         Text(
                           'Reported on ${report.reportDate.day}/${report.reportDate.month}/${report.reportDate.year}',
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                           ),
                         ),
                       ],

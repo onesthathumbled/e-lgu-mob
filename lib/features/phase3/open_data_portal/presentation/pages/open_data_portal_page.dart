@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../../../shared/widgets/shadcn_components.dart';
 import '../../../../../../shared/widgets/main_navigation.dart';
 import '../../domain/entities/open_data_entity.dart';
@@ -181,7 +180,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
             Text(
               'Access public datasets and government information for transparency and research',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
             
@@ -210,7 +209,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
                 Text(
                   '${_datasets.length} datasets',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
                 ),
               ],
@@ -342,7 +341,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _getCategoryColor(dataset.category).withOpacity(0.1),
+                  color: _getCategoryColor(dataset.category).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
@@ -365,7 +364,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
                     Text(
                       dataset.organization,
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -375,7 +374,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: Colors.green.withOpacity(0.1),
+                    color: Colors.green.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
@@ -426,7 +425,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
               runSpacing: 8,
               children: dataset.tags!.map((tag) => Chip(
                 label: Text(tag),
-                backgroundColor: theme.colorScheme.primary.withOpacity(0.1),
+                backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1),
                 labelStyle: TextStyle(
                   color: theme.colorScheme.primary,
                   fontSize: 12,
@@ -497,7 +496,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
           Text(
             subtitle,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
             ),
             textAlign: TextAlign.center,
           ),
@@ -513,7 +512,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
         Text(
           label,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -648,7 +647,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: _getCategoryColor(dataset.category).withOpacity(0.1),
+                      color: _getCategoryColor(dataset.category).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
@@ -671,7 +670,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
                         Text(
                           dataset.organization,
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                           ),
                         ),
                       ],
@@ -741,7 +740,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
                                 Text(
                                   '(${dataset.dataTypes![column]})',
                                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                                   ),
                                 ),
                             ],
@@ -763,7 +762,7 @@ class _OpenDataPortalPageState extends State<OpenDataPortalPage> {
                           runSpacing: 8,
                           children: dataset.tags!.map((tag) => Chip(
                             label: Text(tag),
-                            backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                            backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
                             labelStyle: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                               fontSize: 12,

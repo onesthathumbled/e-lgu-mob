@@ -33,7 +33,7 @@ class ProfilePage extends StatelessWidget {
                   // Profile picture
                   CircleAvatar(
                     radius: 40,
-                    backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                    backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
                     child: Icon(
                       Icons.person,
                       size: 40,
@@ -51,7 +51,7 @@ class ProfilePage extends StatelessWidget {
                   Text(
                     'john.doe@email.com',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                   const SizedBox(height: 16),

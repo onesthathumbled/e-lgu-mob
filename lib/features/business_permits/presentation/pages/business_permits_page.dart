@@ -43,7 +43,7 @@ class BusinessPermitsPage extends StatelessWidget {
                   Text(
                     'Apply for new business permits, renew existing ones, or make amendments to your business registration.',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                 ],

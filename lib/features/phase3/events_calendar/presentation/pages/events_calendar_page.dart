@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../../../shared/widgets/shadcn_components.dart';
 import '../../../../../../shared/widgets/main_navigation.dart';
 import '../../domain/entities/event_entity.dart';
@@ -122,7 +121,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
             Text(
               'Discover and join community events, meetings, and activities',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
             
@@ -186,7 +185,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _getEventTypeColor(event.type).withOpacity(0.1),
+                  color: _getEventTypeColor(event.type).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
@@ -209,7 +208,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
                     Text(
                       '${event.startDate.day}/${event.startDate.month}/${event.startDate.year} at ${event.startDate.hour.toString().padLeft(2, '0')}:${event.startDate.minute.toString().padLeft(2, '0')}',
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.6),
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                   ],
@@ -218,7 +217,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: _getRsvpStatusColor(registration.status).withOpacity(0.1),
+                  color: _getRsvpStatusColor(registration.status).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
@@ -237,7 +236,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
               Icon(
                 Icons.location_on,
                 size: 16,
-                color: theme.colorScheme.onSurface.withOpacity(0.6),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
               const SizedBox(width: 8),
               Expanded(
@@ -248,6 +247,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
               ),
             ],
           ),
+          ],
         ),
       ),
     );
@@ -269,7 +269,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _getEventTypeColor(event.type).withOpacity(0.1),
+                  color: _getEventTypeColor(event.type).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
@@ -292,7 +292,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
                     Text(
                       event.organizerName,
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.6),
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                   ],
@@ -302,7 +302,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.1),
+                    color: Colors.blue.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
@@ -316,7 +316,6 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
                 ),
             ],
           ),
-          
           const SizedBox(height: 12),
           
           // Event Description
@@ -335,7 +334,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
               Icon(
                 Icons.calendar_today,
                 size: 16,
-                color: theme.colorScheme.onSurface.withOpacity(0.6),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
               const SizedBox(width: 8),
               Text(
@@ -350,7 +349,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
               Icon(
                 Icons.access_time,
                 size: 16,
-                color: theme.colorScheme.onSurface.withOpacity(0.6),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
               const SizedBox(width: 8),
               Text(
@@ -365,7 +364,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
               Icon(
                 Icons.location_on,
                 size: 16,
-                color: theme.colorScheme.onSurface.withOpacity(0.6),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
               const SizedBox(width: 8),
               Expanded(
@@ -384,7 +383,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
                 Icon(
                   Icons.people,
                   size: 16,
-                  color: theme.colorScheme.onSurface.withOpacity(0.6),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
                 const SizedBox(width: 8),
                 Text(
@@ -402,7 +401,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
                 Icon(
                   Icons.attach_money,
                   size: 16,
-                  color: theme.colorScheme.onSurface.withOpacity(0.6),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
                 const SizedBox(width: 8),
                 Text(
@@ -422,7 +421,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
               runSpacing: 8,
               children: event.tags!.map((tag) => Chip(
                 label: Text(tag),
-                backgroundColor: theme.colorScheme.primary.withOpacity(0.1),
+                backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1),
                 labelStyle: TextStyle(
                   color: theme.colorScheme.primary,
                   fontSize: 12,
@@ -455,7 +454,8 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
               ),
             ],
           ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -552,7 +552,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: _getEventTypeColor(event.type).withOpacity(0.1),
+                      color: _getEventTypeColor(event.type).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
@@ -575,7 +575,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
                         Text(
                           'by ${event.organizerName}',
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                           ),
                         ),
                       ],
@@ -631,7 +631,7 @@ class _EventsCalendarPageState extends State<EventsCalendarPage> {
                           runSpacing: 8,
                           children: event.tags!.map((tag) => Chip(
                             label: Text(tag),
-                            backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                            backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
                             labelStyle: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                               fontSize: 12,

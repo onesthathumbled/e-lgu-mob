@@ -352,7 +352,7 @@ class _UserPointsCard extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               Theme.of(context).colorScheme.primary,
-              Theme.of(context).colorScheme.primary.withOpacity(0.8),
+              Theme.of(context).colorScheme.primary.withValues(alpha: 0.8),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -367,7 +367,7 @@ class _UserPointsCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Icon(
@@ -391,7 +391,7 @@ class _UserPointsCard extends StatelessWidget {
                       Text(
                         userPoints.levelTitle,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withValues(alpha: 0.9),
                         ),
                       ),
                     ],
@@ -400,7 +400,7 @@ class _UserPointsCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
@@ -433,7 +433,7 @@ class _UserPointsCard extends StatelessWidget {
                       Text(
                         'Total Points',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withValues(alpha: 0.9),
                         ),
                       ),
                     ],
@@ -453,7 +453,7 @@ class _UserPointsCard extends StatelessWidget {
                       Text(
                         'Available Points',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withValues(alpha: 0.9),
                         ),
                       ),
                     ],
@@ -474,13 +474,13 @@ class _UserPointsCard extends StatelessWidget {
                     Text(
                       'Experience',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withValues(alpha: 0.9),
                       ),
                     ),
                     Text(
                       '${userPoints.experience}/${userPoints.nextLevelExperience}',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withValues(alpha: 0.9),
                       ),
                     ),
                   ],
@@ -488,14 +488,14 @@ class _UserPointsCard extends StatelessWidget {
                 const SizedBox(height: 8),
                 LinearProgressIndicator(
                   value: userPoints.experienceProgress,
-                  backgroundColor: Colors.white.withOpacity(0.3),
+                  backgroundColor: Colors.white.withValues(alpha: 0.3),
                   valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   '${userPoints.pointsToNextLevel} points to next level',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withValues(alpha: 0.8),
                   ),
                 ),
               ],
@@ -562,8 +562,8 @@ class _AchievementCard extends StatelessWidget {
               height: 48,
               decoration: BoxDecoration(
                 color: achievement.isCompleted 
-                    ? _getCategoryColor().withOpacity(0.1)
-                    : Colors.grey.withOpacity(0.1),
+                    ? _getCategoryColor().withValues(alpha: 0.1)
+                    : Colors.grey.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
@@ -591,7 +591,7 @@ class _AchievementCard extends StatelessWidget {
                   Text(
                     achievement.description,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                   if (achievement.isInProgress) ...[
@@ -611,7 +611,7 @@ class _AchievementCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: _getCategoryColor().withOpacity(0.1),
+                    color: _getCategoryColor().withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
@@ -627,7 +627,7 @@ class _AchievementCard extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 4),
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.green.withOpacity(0.1),
+                      color: Colors.green.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -684,7 +684,7 @@ class _RewardCard extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: _getCategoryColor().withOpacity(0.1),
+                color: _getCategoryColor().withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
@@ -710,7 +710,7 @@ class _RewardCard extends StatelessWidget {
                   Text(
                     reward.description,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -739,7 +739,7 @@ class _RewardCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: _getCategoryColor().withOpacity(0.1),
+                    color: _getCategoryColor().withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
@@ -797,15 +797,15 @@ class _BadgeCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: badge.isEarned 
-            ? BorderSide(color: _getRarityColor().withOpacity(0.3), width: 2)
+            ? BorderSide(color: _getRarityColor().withValues(alpha: 0.3), width: 2)
             : BorderSide.none,
       ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: badge.isEarned 
-              ? _getRarityColor().withOpacity(0.05)
-              : Colors.grey.withOpacity(0.05),
+              ? _getRarityColor().withValues(alpha: 0.05)
+              : Colors.grey.withValues(alpha: 0.05),
         ),
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -858,7 +858,7 @@ class _LeaderboardEntryCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: isCurrentUser 
-            ? BorderSide(color: Theme.of(context).colorScheme.primary.withOpacity(0.3), width: 2)
+            ? BorderSide(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3), width: 2)
             : BorderSide.none,
       ),
       child: Padding(
@@ -892,7 +892,7 @@ class _LeaderboardEntryCard extends StatelessWidget {
             CircleAvatar(
               radius: 20,
               backgroundColor: isCurrentUser 
-                  ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
+                  ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.1)
                   : Colors.grey.shade300,
               child: Text(
                 entry.userName[0].toUpperCase(),

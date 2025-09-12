@@ -135,7 +135,7 @@ class _PropertyTaxPaymentPageState extends ConsumerState<PropertyTaxPaymentPage>
                     Text(
                       'Search for your property and pay your real property tax online.',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -321,7 +321,7 @@ class _PropertyDetailRow extends StatelessWidget {
               label,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: isTotal ? FontWeight.w600 : FontWeight.normal,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
           ),

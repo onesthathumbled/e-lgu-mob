@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../../../shared/widgets/shadcn_components.dart';
 import '../../../../../../shared/widgets/main_navigation.dart';
 import '../../domain/entities/pet_entity.dart';
@@ -97,7 +96,7 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
             Text(
               'Register your pets and manage their vaccination records',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
             
@@ -131,20 +130,20 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
                     Icon(
                       Icons.pets,
                       size: 64,
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.3),
                     ),
                     const SizedBox(height: 16),
                     Text(
                       'No pets registered yet',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       'Register your first pet to get started',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -236,7 +235,7 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
                 width: 60,
                 height: 60,
                 decoration: BoxDecoration(
-                  color: _getPetTypeColor(pet.type).withOpacity(0.1),
+                  color: _getPetTypeColor(pet.type).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Icon(
@@ -259,7 +258,7 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
                     Text(
                       '${pet.breed} • ${pet.gender.name} • ${pet.ageInYears.toStringAsFixed(1)} years old',
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -268,7 +267,7 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: _getStatusColor(pet.status).withOpacity(0.1),
+                  color: _getStatusColor(pet.status).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
@@ -314,9 +313,9 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.orange.withOpacity(0.1),
+                color: Colors.orange.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.orange.withOpacity(0.3)),
+                border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
               ),
               child: Row(
                 children: [
@@ -379,7 +378,7 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
         Text(
           label,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -405,7 +404,7 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
@@ -523,7 +522,7 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
                     width: 80,
                     height: 80,
                     decoration: BoxDecoration(
-                      color: _getPetTypeColor(pet.type).withOpacity(0.1),
+                      color: _getPetTypeColor(pet.type).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Icon(
@@ -546,7 +545,7 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
                         Text(
                           '${pet.breed} • ${pet.gender.name} • ${pet.ageInYears.toStringAsFixed(1)} years old',
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                           ),
                         ),
                       ],
@@ -675,17 +674,17 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: isDue 
-            ? Colors.red.withOpacity(0.1)
+            ? Colors.red.withValues(alpha: 0.1)
             : isDueSoon
-                ? Colors.orange.withOpacity(0.1)
-                : Colors.green.withOpacity(0.1),
+                ? Colors.orange.withValues(alpha: 0.1)
+                : Colors.green.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: isDue 
-              ? Colors.red.withOpacity(0.3)
+              ? Colors.red.withValues(alpha: 0.3)
               : isDueSoon
-                  ? Colors.orange.withOpacity(0.3)
-                  : Colors.green.withOpacity(0.3),
+                  ? Colors.orange.withValues(alpha: 0.3)
+                  : Colors.green.withValues(alpha: 0.3),
         ),
       ),
       child: Column(
@@ -733,13 +732,13 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
           Text(
             'Next due: ${record.nextDueDate.day}/${record.nextDueDate.month}/${record.nextDueDate.year}',
             style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.7),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
             ),
           ),
           Text(
             'Vet: ${record.veterinarianName}',
             style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.7),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
             ),
           ),
         ],

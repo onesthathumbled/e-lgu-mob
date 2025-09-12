@@ -90,7 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Text(
                   'Create your account to access local government services',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
                 ),
                 

@@ -130,7 +130,7 @@ class _NewBusinessPermitPageState extends ConsumerState<NewBusinessPermitPage> {
                     Text(
                       'Fill out the form below to apply for a new business permit. All fields marked with * are required.',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                     ),
                   ],

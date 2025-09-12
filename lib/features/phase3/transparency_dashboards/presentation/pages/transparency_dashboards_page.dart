@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../../../shared/widgets/shadcn_components.dart';
 import '../../../../../../shared/widgets/main_navigation.dart';
 import '../../domain/entities/transparency_entity.dart';
@@ -148,7 +147,7 @@ class _TransparencyDashboardsPageState extends State<TransparencyDashboardsPage>
             Text(
               'Real-time insights into LGU service performance and public data',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
             
@@ -219,14 +218,14 @@ class _TransparencyDashboardsPageState extends State<TransparencyDashboardsPage>
                     Text(
                       'Performance Score',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                     ),
                     const SizedBox(height: 8),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
-                        color: _getPerformanceColor(score).withOpacity(0.1),
+                        color: _getPerformanceColor(score).withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Text(
@@ -396,7 +395,7 @@ class _TransparencyDashboardsPageState extends State<TransparencyDashboardsPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: _getPerformanceColor(sla.complianceRate).withOpacity(0.1),
+                  color: _getPerformanceColor(sla.complianceRate).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
@@ -433,7 +432,7 @@ class _TransparencyDashboardsPageState extends State<TransparencyDashboardsPage>
           Text(
             'Average Processing Time: ${sla.averageProcessingTime.toStringAsFixed(1)} hours',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
             ),
           ),
         ],
@@ -454,7 +453,7 @@ class _TransparencyDashboardsPageState extends State<TransparencyDashboardsPage>
         Text(
           label,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
       ],
@@ -541,7 +540,7 @@ class _TransparencyDashboardsPageState extends State<TransparencyDashboardsPage>
         Text(
           label,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: 4),
@@ -595,7 +594,7 @@ class _TransparencyDashboardsPageState extends State<TransparencyDashboardsPage>
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Theme.of(context).colorScheme.outline.withOpacity(0.2)),
+        border: Border.all(color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
@@ -612,7 +611,7 @@ class _TransparencyDashboardsPageState extends State<TransparencyDashboardsPage>
                 Text(
                   '${service.totalRequests} requests • ${service.completionRate.toStringAsFixed(1)}% completion',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
                 ),
               ],
@@ -621,7 +620,7 @@ class _TransparencyDashboardsPageState extends State<TransparencyDashboardsPage>
           Column(
             children: [
               Text(
-                '${service.userSatisfaction.toStringAsFixed(1)}',
+                service.userSatisfaction.toStringAsFixed(1),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Colors.orange,
@@ -630,7 +629,7 @@ class _TransparencyDashboardsPageState extends State<TransparencyDashboardsPage>
               Text(
                 'rating',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],

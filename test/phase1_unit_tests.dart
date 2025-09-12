@@ -109,14 +109,6 @@ void main() {
 
   group('Business Permit Entity Tests', () {
     test('BusinessPermitEntity should be created with required fields', () {
-      final address = AddressEntity(
-        street: '123 Business St',
-        barangay: 'Barangay 1',
-        city: 'Sample City',
-        province: 'Sample Province',
-        postalCode: '1234',
-      );
-
       final businessAddress = BusinessAddressEntity(
         street: '123 Main St',
         barangay: 'Barangay 1',

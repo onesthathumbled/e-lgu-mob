@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../../../shared/widgets/shadcn_components.dart';
 import '../../../../../../shared/widgets/main_navigation.dart';
 import '../../domain/entities/facility_booking_entity.dart';
@@ -141,7 +140,7 @@ class _FacilityBookingsPageState extends State<FacilityBookingsPage> {
             Text(
               'Reserve barangay halls, gyms, courts, and function rooms for your events',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
             
@@ -230,7 +229,7 @@ class _FacilityBookingsPageState extends State<FacilityBookingsPage> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: _getStatusColor(booking.status).withOpacity(0.1),
+                    color: _getStatusColor(booking.status).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
@@ -249,7 +248,7 @@ class _FacilityBookingsPageState extends State<FacilityBookingsPage> {
               Icon(
                 Icons.calendar_today,
                 size: 16,
-                color: theme.colorScheme.onSurface.withOpacity(0.6),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
               const SizedBox(width: 8),
               Text(
@@ -264,7 +263,7 @@ class _FacilityBookingsPageState extends State<FacilityBookingsPage> {
               Icon(
                 Icons.access_time,
                 size: 16,
-                color: theme.colorScheme.onSurface.withOpacity(0.6),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
               const SizedBox(width: 8),
               Text(
@@ -279,7 +278,7 @@ class _FacilityBookingsPageState extends State<FacilityBookingsPage> {
               Icon(
                 Icons.people,
                 size: 16,
-                color: theme.colorScheme.onSurface.withOpacity(0.6),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
               const SizedBox(width: 8),
               Text(
@@ -293,7 +292,7 @@ class _FacilityBookingsPageState extends State<FacilityBookingsPage> {
             Text(
               'Reference: ${booking.bookingReference}',
               style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.6),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
           ],
@@ -321,7 +320,7 @@ class _FacilityBookingsPageState extends State<FacilityBookingsPage> {
               width: double.infinity,
               height: 80,
               decoration: BoxDecoration(
-                color: theme.colorScheme.primary.withOpacity(0.1),
+                color: theme.colorScheme.primary.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(
@@ -351,13 +350,13 @@ class _FacilityBookingsPageState extends State<FacilityBookingsPage> {
                 Icon(
                   Icons.people,
                   size: 14,
-                  color: theme.colorScheme.onSurface.withOpacity(0.6),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
                 const SizedBox(width: 4),
                 Text(
                   '${facility.capacity} capacity',
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                 ),
               ],
@@ -371,13 +370,13 @@ class _FacilityBookingsPageState extends State<FacilityBookingsPage> {
                 Icon(
                   Icons.attach_money,
                   size: 14,
-                  color: theme.colorScheme.onSurface.withOpacity(0.6),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
                 const SizedBox(width: 4),
                 Text(
                   '₱${facility.hourlyRate.toStringAsFixed(0)}/hour',
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                 ),
               ],
@@ -488,7 +487,7 @@ class _FacilityBookingsPageState extends State<FacilityBookingsPage> {
                         Text(
                           facility.description,
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                           ),
                         ),
                       ],
@@ -525,7 +524,7 @@ class _FacilityBookingsPageState extends State<FacilityBookingsPage> {
                         runSpacing: 8,
                         children: facility.amenities.map((amenity) => Chip(
                           label: Text(amenity),
-                          backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                          backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
                           labelStyle: TextStyle(
                             color: Theme.of(context).colorScheme.primary,
                             fontSize: 12,

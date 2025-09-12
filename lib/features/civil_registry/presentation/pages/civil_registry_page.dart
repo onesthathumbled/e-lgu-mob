@@ -40,7 +40,7 @@ class CivilRegistryPage extends StatelessWidget {
                   Text(
                     'Request birth, marriage, and death certificates with online payment and delivery options.',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                 ],
