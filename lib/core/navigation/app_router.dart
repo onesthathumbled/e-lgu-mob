@@ -11,6 +11,7 @@ import '../../features/civil_registry/presentation/pages/civil_registry_page.dar
 import '../../features/permits/presentation/pages/permits_page.dart';
 import '../../features/social_programs/presentation/pages/social_programs_page.dart';
 import '../../features/community/presentation/pages/community_page.dart';
+import '../../features/notifications/presentation/pages/notifications_page.dart';
 import '../../shared/widgets/main_navigation.dart';
 import '../../shared/widgets/onboarding_page.dart';
 import '../../shared/widgets/splash_page.dart';
@@ -79,6 +80,11 @@ class AppRouter {
             path: profile,
             name: 'profile',
             builder: (context, state) => const ProfilePage(),
+          ),
+          GoRoute(
+            path: '/notifications',
+            name: 'notifications',
+            builder: (context, state) => const NotificationsPage(),
           ),
           GoRoute(
             path: businessPermits,

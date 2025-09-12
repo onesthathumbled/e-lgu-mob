@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/navigation/app_router.dart';
+import '../../features/notifications/presentation/pages/notifications_page.dart';
 
 /// Main navigation widget with bottom navigation bar
 class MainNavigation extends StatelessWidget {
@@ -38,6 +39,11 @@ class MainNavigation extends StatelessWidget {
             label: 'Community',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.notifications_outlined),
+            activeIcon: Icon(Icons.notifications),
+            label: 'Notifications',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             activeIcon: Icon(Icons.person),
             label: 'Profile',
@@ -62,8 +68,10 @@ class MainNavigation extends StatelessWidget {
         return 1;
       case AppRouter.community:
         return 2;
-      case AppRouter.profile:
+      case '/notifications':
         return 3;
+      case AppRouter.profile:
+        return 4;
       default:
         return 0;
     }
@@ -81,6 +89,9 @@ class MainNavigation extends StatelessWidget {
         context.go(AppRouter.community);
         break;
       case 3:
+        context.go('/notifications');
+        break;
+      case 4:
         context.go(AppRouter.profile);
         break;
     }
