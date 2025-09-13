@@ -81,7 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 // Title
                 Text(
-                  'Join LGU Mobile',
+                  'Join e-LGU',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),

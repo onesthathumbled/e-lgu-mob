@@ -18,7 +18,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   final List<OnboardingStep> _steps = [
     OnboardingStep(
       icon: Icons.home,
-      title: 'Welcome to LGU Mobile',
+      title: 'Welcome to e-LGU',
       description: 'Access local government services right from your mobile device. Get permits, pay taxes, and connect with your community.',
     ),
     OnboardingStep(

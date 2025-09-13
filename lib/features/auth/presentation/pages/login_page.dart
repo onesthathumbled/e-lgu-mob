@@ -117,7 +117,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Sign in to your LGU account',
+                        'Sign in to your e-LGU account',
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                         ),
