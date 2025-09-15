@@ -1,0 +1,340 @@
+# e-LGU Mobile App - Cursor Rules
+
+## Project Overview
+This is a comprehensive Flutter cross-platform application for Local Government Units (LGUs) and residents, built with shadcn/ui design philosophy and Clean Architecture patterns. The app is named "e-LGU" and follows Filipino cultural elements and government service patterns.
+
+## Architecture & Structure
+
+### Core Architecture
+- **Clean Architecture**: Domain → Data → Presentation layers
+- **Feature-First Structure**: Organized by business features, not technical layers
+- **State Management**: Riverpod for reactive state management
+- **Navigation**: GoRouter for declarative routing
+- **Design System**: shadcn/ui inspired components
+
+### Directory Structure
+```
+lib/
+├── core/                    # Core functionality
+│   ├── constants/          # App constants & configuration
+│   ├── errors/            # Error handling (Failures & Exceptions)
+│   ├── network/           # API client & network utilities
+│   ├── navigation/        # App routing with GoRouter
+│   └── utils/             # Validation & utility functions
+├── features/              # Feature modules (Clean Architecture)
+│   ├── auth/              # Authentication
+│   ├── business_permits/  # Business Permit & Licensing System
+│   ├── property_tax/      # Real Property Tax payments
+│   ├── digital_id/        # Local Digital ID management
+│   ├── civil_registry/    # Civil registry documents
+│   ├── permits/           # Health, work, sanitation permits
+│   ├── social_programs/   # Citizen assistance programs
+│   ├── community/         # Community features
+│   ├── profile/           # User profile management
+│   ├── phase2/            # Phase 2 features (queue, transport, etc.)
+│   └── phase3/            # Phase 3 features (events, bookings, etc.)
+├── shared/                # Shared components
+│   ├── widgets/           # Reusable UI components
+│   ├── services/          # Shared services
+│   └── models/            # Data models
+└── theme/                 # Theme configuration
+```
+
+## Coding Standards
+
+### Naming Conventions
+- **Files**: Use snake_case (e.g., `business_permit_entity.dart`)
+- **Classes**: Use PascalCase (e.g., `BusinessPermitEntity`)
+- **Variables/Methods**: Use camelCase (e.g., `businessName`, `getTotalFees`)
+- **Constants**: Use UPPER_SNAKE_CASE (e.g., `APP_NAME`, `MAX_FILE_SIZE`)
+- **Enums**: Use PascalCase (e.g., `BusinessPermitStatus`)
+- **Enum Values**: Use camelCase (e.g., `pending`, `underReview`)
+
+### File Organization
+- **Entities**: Always extend `Equatable` for value equality
+- **Providers**: Use Riverpod providers with proper dependency injection
+- **Pages**: Use `StatelessWidget` or `ConsumerWidget` for Riverpod integration
+- **Components**: Create reusable widgets in `shared/widgets/`
+
+### Entity Patterns
+```dart
+class BusinessPermitEntity extends Equatable {
+  const BusinessPermitEntity({
+    required this.id,
+    required this.userId,
+    // ... other required fields
+    this.optionalField,
+  });
+
+  final String id;
+  final String userId;
+  final String? optionalField;
+
+  // Computed properties
+  double get totalFees => fees?.fold(0.0, (sum, fee) => sum + fee.amount) ?? 0.0;
+  bool get isPending => status == BusinessPermitStatus.pending;
+
+  @override
+  List<Object?> get props => [id, userId, optionalField];
+
+  @override
+  String toString() => 'BusinessPermitEntity(id: $id, status: $status)';
+}
+```
+
+### Provider Patterns
+```dart
+// Data source providers
+final authLocalDataSourceProvider = Provider<AuthLocalDataSource>((ref) {
+  final sharedPreferences = ref.watch(sharedPreferencesProvider);
+  return AuthLocalDataSourceImpl(sharedPreferences: sharedPreferences);
+});
+
+// Repository providers
+final authRepositoryProvider = Provider<AuthRepository>((ref) {
+  final remoteDataSource = ref.watch(authRemoteDataSourceProvider);
+  final localDataSource = ref.watch(authLocalDataSourceProvider);
+  return AuthRepositoryImpl(
+    remoteDataSource: remoteDataSource,
+    localDataSource: localDataSource,
+  );
+});
+```
+
+### UI Component Patterns
+- Use shadcn/ui inspired components from `shared/widgets/shadcn_components.dart`
+- Follow the design system with consistent spacing, colors, and typography
+- Use Philippine flag colors: Blue (#0038A8), Red (#CE1126), Yellow (#FCD116)
+- Implement proper loading states, error handling, and success feedback
+
+### Navigation Patterns
+```dart
+// Use AppRouter constants for navigation
+context.go(AppRouter.businessPermits);
+context.push(AppRouter.profile);
+
+// Route definitions in app_router.dart
+static const String businessPermits = '/business-permits';
+```
+
+## Feature Development Guidelines
+
+### New Feature Structure
+When creating a new feature, follow this structure:
+```
+features/feature_name/
+├── data/
+│   ├── datasources/       # Remote and local data sources
+│   └── repositories/      # Repository implementations
+├── domain/
+│   ├── entities/          # Business entities
+│   └── repositories/      # Repository interfaces
+└── presentation/
+    ├── pages/             # UI pages
+    └── providers/         # Riverpod providers
+```
+
+### Entity Requirements
+- Always extend `Equatable`
+- Include computed properties for business logic
+- Use proper enum types for status fields
+- Include comprehensive `toString()` methods
+- Add validation getters (e.g., `isPending`, `isApproved`)
+
+### Status Enums
+Use consistent status enums across features:
+```dart
+enum BusinessPermitStatus {
+  pending,
+  underReview,
+  approved,
+  rejected,
+  completed,
+  cancelled,
+}
+```
+
+### Fee Management
+Include fee entities with proper calculations:
+```dart
+class BusinessFeeEntity extends Equatable {
+  final String id;
+  final String name;
+  final double amount;
+  final BusinessFeeType type;
+  final bool isPaid;
+  final DateTime? paidAt;
+}
+```
+
+## Design System Guidelines
+
+### shadcn/ui Components
+Use the established component library:
+- `ShadButton` - Multiple variants (primary, secondary, outline, ghost)
+- `ShadCard` - Clean, modern card component
+- `ShadInput` - Form input with validation
+- `ShadBanner` - Alert/notification banners
+- `ShadSkeleton` - Loading placeholders
+- `ServiceCard` - Specialized service display cards
+
+### Color Palette
+- **Primary**: Philippine Flag Blue (#0038A8)
+- **Secondary**: Philippine Flag Red (#CE1126)
+- **Accent**: Philippine Flag Yellow (#FCD116)
+- **Success**: Green (#22C55E)
+- **Warning**: Orange (#F59E0B)
+- **Destructive**: Red (#DC2626)
+
+### Spacing System
+Use consistent spacing from `ShadcnTheme`:
+- `space1` = 4px
+- `space2` = 8px
+- `space3` = 12px
+- `space4` = 16px
+- `space6` = 24px
+
+### Typography
+- Use Material Design typography scale
+- Consistent font weights (w500, w600, w700)
+- Proper line heights for readability
+
+## App-Specific Guidelines
+
+### Filipino Cultural Elements
+- Use "🇵🇭 e-LGU" as the app name
+- Include Filipino greetings: "Mabuhay!"
+- Use Filipino taglines: "Serbisyong Pilipino, Serbisyong Tapat"
+- Support Filipino language where appropriate
+
+### Government Service Patterns
+- Include SLA timers and processing time estimates
+- Implement fee calculators for all services
+- Add status tracking for all applications
+- Include document upload and QR code generation
+- Support e-signature placeholders
+
+### LGU Service Categories
+Organize services by these categories:
+- Business (Permits, Licensing)
+- Property (Tax payments, Real estate)
+- Civil Registry (Birth, Marriage, Death certificates)
+- Identification (Digital ID, Local ID)
+- Health (Health permits, Medical services)
+- Social Services (Assistance programs, Aid)
+- Community (Events, Jobs, Marketplace)
+
+## Error Handling
+
+### Exception Handling
+- Use custom exceptions in `core/errors/exceptions.dart`
+- Implement proper error messages in `AppConstants`
+- Handle network errors gracefully
+- Provide user-friendly error messages
+
+### Validation
+- Use `formz` package for form validation
+- Implement proper input validation
+- Show validation errors clearly
+- Use consistent error styling
+
+## Testing Guidelines
+
+### Test Structure
+- Unit tests for entities and business logic
+- Integration tests for complete features
+- Widget tests for UI components
+- Test files should mirror the feature structure
+
+### Test Naming
+- Use descriptive test names
+- Group related tests with `group()`
+- Test both success and failure scenarios
+- Include edge cases and validation tests
+
+## Performance Guidelines
+
+### State Management
+- Use `ConsumerWidget` for Riverpod integration
+- Avoid unnecessary rebuilds
+- Use `select` for specific state subscriptions
+- Implement proper loading states
+
+### Navigation
+- Use `GoRouter` for declarative routing
+- Implement proper route guards
+- Handle deep linking appropriately
+- Use `ShellRoute` for nested navigation
+
+### Asset Management
+- Optimize images and icons
+- Use appropriate image formats
+- Implement proper caching strategies
+- Follow Flutter asset guidelines
+
+## Security Guidelines
+
+### Data Protection
+- Implement proper authentication
+- Use secure storage for sensitive data
+- Validate all user inputs
+- Follow data privacy regulations
+
+### API Security
+- Use HTTPS for all API calls
+- Implement proper authentication tokens
+- Handle API errors gracefully
+- Validate server responses
+
+## Documentation
+
+### Code Documentation
+- Document all public APIs
+- Use proper Dart documentation comments
+- Include examples for complex functions
+- Document business logic and calculations
+
+### README Updates
+- Keep feature documentation current
+- Update architecture diagrams
+- Document new patterns and conventions
+- Include setup and deployment instructions
+
+## Dependencies
+
+### Core Dependencies
+- `flutter_riverpod` - State management
+- `go_router` - Navigation
+- `equatable` - Value equality
+- `formz` - Form validation
+- `http` - API calls
+- `shared_preferences` - Local storage
+- `hive` - Local database
+
+### UI Dependencies
+- `flutter_svg` - SVG support
+- `cached_network_image` - Image caching
+- `qr_flutter` - QR code generation
+- `fl_chart` - Charts and graphs
+
+## Best Practices
+
+### Code Quality
+- Follow Dart/Flutter linting rules
+- Use `analysis_options.yaml` configuration
+- Implement proper error handling
+- Write clean, readable code
+
+### Git Workflow
+- Use meaningful commit messages
+- Create feature branches
+- Write descriptive PR descriptions
+- Keep commits atomic and focused
+
+### Performance
+- Optimize for mobile performance
+- Use proper image sizing
+- Implement lazy loading
+- Monitor app performance
+
+Remember: This is a government application serving Filipino citizens. Prioritize accessibility, reliability, and user experience. Follow government standards for data handling and security.
