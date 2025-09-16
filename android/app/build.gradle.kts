@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -5,14 +7,22 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// Load NDK version from configuration file
+val ndkVersionProperties = Properties()
+val ndkVersionFile = rootProject.file("ndk-version.properties")
+if (ndkVersionFile.exists()) {
+    ndkVersionFile.inputStream().use { ndkVersionProperties.load(it) }
+}
+
 android {
     namespace = "com.example.e_lgu_mob"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = ndkVersionProperties.getProperty("ndk.version") ?: flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -41,4 +51,8 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 }
