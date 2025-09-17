@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
@@ -29,6 +30,7 @@ import '../../shared/widgets/main_navigation.dart';
 import '../../shared/widgets/onboarding_page.dart';
 import '../../shared/widgets/splash_page.dart';
 import '../../shared/widgets/stories_carousel.dart';
+import '../../shared/widgets/announcement_banner.dart';
 
 /// Application router configuration
 class AppRouter {
@@ -236,11 +238,11 @@ class AppRouter {
 }
 
 /// Home page with service overview
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('e-LGU'),
@@ -253,11 +255,13 @@ class HomePage extends StatelessWidget {
         ],
       ),
       endDrawer: const ServicesDrawer(),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
             // Welcome Section - Filipino Flag Themed
             Container(
               width: double.infinity,
@@ -674,8 +678,13 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
+              ],
+            ),
+          ),
+          
+          // Announcement Banner Overlay
+          const HomepageAnnouncementBanner(),
+        ],
       ),
     );
   }

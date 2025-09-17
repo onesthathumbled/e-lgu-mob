@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../shared/widgets/shadcn_components.dart';
 import '../../../../shared/widgets/main_navigation.dart';
+import '../../../../shared/widgets/announcement_banner.dart';
 import '../../../documents/presentation/pages/document_generator_demo_page.dart';
 import '../../../phase2/gamification/presentation/pages/gamification_page.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -183,6 +185,21 @@ class ProfilePage extends StatelessWidget {
                 );
               },
             ),
+            
+            const SizedBox(height: 24),
+            
+            // Developer/Admin Tools Section
+            Text(
+              'Developer Tools',
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+            
+            // Announcement Banner Reset Widget
+            const AnnouncementBannerResetWidget(),
             
             const SizedBox(height: 24),
             

@@ -21,6 +21,7 @@ class AppConstants {
   static const String themeKey = 'theme_mode';
   static const String languageKey = 'language';
   static const String onboardingKey = 'onboarding_completed';
+  static const String announcementBannerKey = 'announcement_banner_seen';
   
   // LGU Service Categories
   static const List<String> serviceCategories = [
