@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/navigation/app_router.dart';
+import '../../theme/shadcn_theme.dart';
 
 /// Main navigation widget with bottom navigation bar
 class MainNavigation extends StatelessWidget {
@@ -13,42 +14,57 @@ class MainNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentIndex = _getCurrentIndex(context);
+    
     return Scaffold(
       body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _getCurrentIndex(context),
-        onTap: (index) => _onTap(context, index),
-        selectedItemColor: const Color(0xFF0038A8), // Philippine Flag Blue
-        unselectedItemColor: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
-        backgroundColor: Colors.white,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: 'Home',
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: ShadcnTheme.background,
+          boxShadow: ShadcnTheme.shadowLg,
+        ),
+        child: SafeArea(
+          child: Container(
+            height: 80,
+            padding: const EdgeInsets.symmetric(horizontal: ShadcnTheme.space4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _NavItem(
+                  icon: Icons.home_outlined,
+                  activeIcon: Icons.home,
+                  label: 'Home',
+                  isActive: currentIndex == 0,
+                  onTap: () => _onTap(context, 0),
+                ),
+                _NavItem(
+                  icon: Icons.description_outlined,
+                  activeIcon: Icons.description,
+                  label: 'Services',
+                  isActive: currentIndex == 1,
+                  onTap: () => _onTap(context, 1),
+                ),
+                _FloatingAddButton(
+                  onTap: () => _showQuickActions(context),
+                ),
+                _NavItem(
+                  icon: Icons.people_outline,
+                  activeIcon: Icons.people,
+                  label: 'Community',
+                  isActive: currentIndex == 2,
+                  onTap: () => _onTap(context, 2),
+                ),
+                _NavItem(
+                  icon: Icons.person_outline,
+                  activeIcon: Icons.person,
+                  label: 'Profile',
+                  isActive: currentIndex == 4,
+                  onTap: () => _onTap(context, 4),
+                ),
+              ],
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business_outlined),
-            activeIcon: Icon(Icons.business),
-            label: 'Services',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people_outline),
-            activeIcon: Icon(Icons.people),
-            label: 'Community',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_outlined),
-            activeIcon: Icon(Icons.notifications),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -108,6 +124,102 @@ class MainNavigation extends StatelessWidget {
         context.go(AppRouter.profile);
         break;
     }
+  }
+
+  void _showQuickActions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: BoxDecoration(
+          color: ShadcnTheme.background,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(ShadcnTheme.radius2xl),
+            topRight: Radius.circular(ShadcnTheme.radius2xl),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              margin: const EdgeInsets.symmetric(vertical: ShadcnTheme.space3),
+              decoration: BoxDecoration(
+                color: ShadcnTheme.mutedForeground,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(ShadcnTheme.space6),
+              child: Column(
+                children: [
+                  Text(
+                    'Quick Actions',
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: ShadcnTheme.space6),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _QuickActionCard(
+                          icon: Icons.business,
+                          title: 'Business Permit',
+                          onTap: () {
+                            Navigator.pop(context);
+                            context.go(AppRouter.businessPermits);
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: ShadcnTheme.space4),
+                      Expanded(
+                        child: _QuickActionCard(
+                          icon: Icons.home,
+                          title: 'Property Tax',
+                          onTap: () {
+                            Navigator.pop(context);
+                            context.go(AppRouter.propertyTax);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: ShadcnTheme.space4),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _QuickActionCard(
+                          icon: Icons.credit_card,
+                          title: 'Digital ID',
+                          onTap: () {
+                            Navigator.pop(context);
+                            context.go(AppRouter.digitalId);
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: ShadcnTheme.space4),
+                      Expanded(
+                        child: _QuickActionCard(
+                          icon: Icons.description,
+                          title: 'Documents',
+                          onTap: () {
+                            Navigator.pop(context);
+                            context.go(AppRouter.civilRegistry);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: ShadcnTheme.space6),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -360,6 +472,129 @@ class _ServiceTile extends StatelessWidget {
       title: Text(title),
       subtitle: Text(subtitle),
       onTap: onTap,
+    );
+  }
+}
+
+/// Modern navigation item component
+class _NavItem extends StatelessWidget {
+  const _NavItem({
+    required this.icon,
+    required this.activeIcon,
+    required this.label,
+    required this.isActive,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final IconData activeIcon;
+  final String label;
+  final bool isActive;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: ShadcnTheme.space2,
+          vertical: ShadcnTheme.space1,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              isActive ? activeIcon : icon,
+              color: isActive ? ShadcnTheme.primary : ShadcnTheme.mutedForeground,
+              size: 24,
+            ),
+            const SizedBox(height: ShadcnTheme.space1),
+            Text(
+              label,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                color: isActive ? ShadcnTheme.primary : ShadcnTheme.mutedForeground,
+                fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Floating add button component
+class _FloatingAddButton extends StatelessWidget {
+  const _FloatingAddButton({
+    required this.onTap,
+  });
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 56,
+        height: 56,
+        decoration: BoxDecoration(
+          color: ShadcnTheme.primary,
+          shape: BoxShape.circle,
+          boxShadow: ShadcnTheme.shadowLg,
+        ),
+        child: const Icon(
+          Icons.add,
+          color: ShadcnTheme.primaryForeground,
+          size: 28,
+        ),
+      ),
+    );
+  }
+}
+
+/// Quick action card component
+class _QuickActionCard extends StatelessWidget {
+  const _QuickActionCard({
+    required this.icon,
+    required this.title,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String title;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(ShadcnTheme.space4),
+        decoration: BoxDecoration(
+          color: ShadcnTheme.muted,
+          borderRadius: BorderRadius.circular(ShadcnTheme.radiusLg),
+          border: Border.all(color: ShadcnTheme.border, width: 0.5),
+        ),
+        child: Column(
+          children: [
+            Icon(
+              icon,
+              color: ShadcnTheme.primary,
+              size: 32,
+            ),
+            const SizedBox(height: ShadcnTheme.space2),
+            Text(
+              title,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

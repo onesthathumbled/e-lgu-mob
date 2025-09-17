@@ -16,11 +16,12 @@ class ShadcnTheme {
   static const double space16 = 64.0;
   static const double space20 = 80.0;
 
-  // Border radius tokens
-  static const double radiusSm = 6.0;
-  static const double radiusMd = 8.0;
-  static const double radiusLg = 12.0;
-  static const double radiusXl = 16.0;
+  // Border radius tokens - More rounded for modern look
+  static const double radiusSm = 8.0;
+  static const double radiusMd = 12.0;
+  static const double radiusLg = 16.0;
+  static const double radiusXl = 20.0;
+  static const double radius2xl = 24.0;
 
   // Font sizes
   static const double fontSizeXs = 12.0;
@@ -36,11 +37,11 @@ class ShadcnTheme {
   static const double lineHeightNormal = 1.5;
   static const double lineHeightRelaxed = 1.75;
 
-  // Colors - Filipino Flag Themed
-  // Philippine Flag Colors: Blue (#0038A8), Red (#CE1126), White (#FFFFFF), Yellow (#FCD116)
-  static const Color background = Color(0xFFFFFFFF); // White
+  // Colors - Modern Clean Design
+  // Primary: Bright Green (#34C759), Clean whites and grays
+  static const Color background = Color(0xFFFFFFFF); // Pure white
   static const Color foreground = Color(0xFF1A1A1A); // Dark gray for text
-  static const Color muted = Color(0xFFF8F9FA); // Light gray
+  static const Color muted = Color(0xFFF8F9FA); // Very light gray
   static const Color mutedForeground = Color(0xFF6B7280); // Medium gray
   static const Color popover = Color(0xFFFFFFFF); // White
   static const Color popoverForeground = Color(0xFF1A1A1A); // Dark gray
@@ -48,32 +49,43 @@ class ShadcnTheme {
   static const Color cardForeground = Color(0xFF1A1A1A); // Dark gray
   static const Color border = Color(0xFFE5E7EB); // Light border
   static const Color input = Color(0xFFF3F4F6); // Light input background
-  static const Color primary = Color(0xFF0038A8); // Philippine Flag Blue
-  static const Color primaryForeground = Color(0xFFFFFFFF); // White text on blue
-  static const Color secondary = Color(0xFFFCD116); // Philippine Flag Yellow
-  static const Color secondaryForeground = Color(0xFF1A1A1A); // Dark text on yellow
-  static const Color accent = Color(0xFFCE1126); // Philippine Flag Red
-  static const Color accentForeground = Color(0xFFFFFFFF); // White text on red
-  static const Color destructive = Color(0xFFCE1126); // Philippine Flag Red
+  static const Color primary = Color(0xFF34C759); // Bright Green - Primary
+  static const Color primaryForeground = Color(0xFFFFFFFF); // White text on green
+  static const Color secondary = Color(0xFFF3F4F6); // Light gray
+  static const Color secondaryForeground = Color(0xFF1A1A1A); // Dark text on gray
+  static const Color accent = Color(0xFF34C759); // Same as primary
+  static const Color accentForeground = Color(0xFFFFFFFF); // White text
+  static const Color destructive = Color(0xFFDC2626); // Red for errors
   static const Color destructiveForeground = Color(0xFFFFFFFF); // White text
-  static const Color ring = Color(0xFF0038A8); // Philippine Flag Blue
+  static const Color ring = Color(0xFF34C759); // Bright Green
 
-  // Filipino Flag specific colors
+  // Modern accent colors for variety
+  static const Color success = Color(0xFF34C759); // Green for success
+  static const Color warning = Color(0xFFF59E0B); // Orange for warnings
+  static const Color info = Color(0xFF3B82F6); // Blue for info
+  
+  // Task/Icon colors for variety
+  static const Color taskOrange = Color(0xFFEA580C); // Orange for tasks
+  static const Color taskBlue = Color(0xFF3B82F6); // Blue for tasks
+  static const Color taskPink = Color(0xFFEC4899); // Pink for tasks
+  static const Color taskPurple = Color(0xFF8B5CF6); // Purple for tasks
+  
+  // Filipino Flag specific colors (kept for cultural elements)
   static const Color filipinoBlue = Color(0xFF0038A8); // Official Philippine Flag Blue
   static const Color filipinoRed = Color(0xFFCE1126); // Official Philippine Flag Red
   static const Color filipinoWhite = Color(0xFFFFFFFF); // White
   static const Color filipinoYellow = Color(0xFFFCD116); // Official Philippine Flag Yellow
   
-  // Additional Filipino-themed colors
-  static const Color lguBlue = Color(0xFF0038A8); // Same as Filipino Blue
-  static const Color lguGreen = Color(0xFF059669); // Keep green for nature/environment
+  // LGU themed colors (updated to match modern design)
+  static const Color lguBlue = Color(0xFF0038A8); // Keep for government elements
+  static const Color lguGreen = Color(0xFF34C759); // Updated to match primary
   static const Color lguOrange = Color(0xFFEA580C); // Keep orange for warnings
-  static const Color lguRed = Color(0xFFCE1126); // Same as Filipino Red
+  static const Color lguRed = Color(0xFFCE1126); // Keep red for alerts
 
-  // Shadows
+  // Shadows - Softer, more modern shadows
   static const List<BoxShadow> shadowSm = [
     BoxShadow(
-      color: Color(0x0A000000),
+      color: Color(0x08000000),
       blurRadius: 4,
       offset: Offset(0, 1),
     ),
@@ -82,16 +94,24 @@ class ShadcnTheme {
   static const List<BoxShadow> shadowMd = [
     BoxShadow(
       color: Color(0x0A000000),
-      blurRadius: 6,
-      offset: Offset(0, 4),
+      blurRadius: 8,
+      offset: Offset(0, 2),
     ),
   ];
 
   static const List<BoxShadow> shadowLg = [
     BoxShadow(
-      color: Color(0x0A000000),
-      blurRadius: 15,
-      offset: Offset(0, 10),
+      color: Color(0x0C000000),
+      blurRadius: 16,
+      offset: Offset(0, 4),
+    ),
+  ];
+
+  static const List<BoxShadow> shadowXl = [
+    BoxShadow(
+      color: Color(0x10000000),
+      blurRadius: 24,
+      offset: Offset(0, 8),
     ),
   ];
 
@@ -191,32 +211,34 @@ class ShadcnTheme {
           elevation: 0,
           shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(radiusMd),
+            borderRadius: BorderRadius.circular(radiusLg),
           ),
           padding: const EdgeInsets.symmetric(
-            horizontal: space4,
-            vertical: space2,
+            horizontal: space6,
+            vertical: space3,
           ),
           textStyle: const TextStyle(
-            fontSize: fontSizeSm,
-            fontWeight: FontWeight.w500,
+            fontSize: fontSizeBase,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.5,
           ),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: foreground,
-          side: const BorderSide(color: border),
+          side: const BorderSide(color: border, width: 1.5),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(radiusMd),
+            borderRadius: BorderRadius.circular(radiusLg),
           ),
           padding: const EdgeInsets.symmetric(
-            horizontal: space4,
-            vertical: space2,
+            horizontal: space6,
+            vertical: space3,
           ),
           textStyle: const TextStyle(
-            fontSize: fontSizeSm,
-            fontWeight: FontWeight.w500,
+            fontSize: fontSizeBase,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.5,
           ),
         ),
       ),
@@ -224,40 +246,41 @@ class ShadcnTheme {
         style: TextButton.styleFrom(
           foregroundColor: primary,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(radiusMd),
+            borderRadius: BorderRadius.circular(radiusLg),
           ),
           padding: const EdgeInsets.symmetric(
-            horizontal: space4,
-            vertical: space2,
+            horizontal: space6,
+            vertical: space3,
           ),
           textStyle: const TextStyle(
-            fontSize: fontSizeSm,
-            fontWeight: FontWeight.w500,
+            fontSize: fontSizeBase,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.5,
           ),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: background,
+        fillColor: input,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radiusMd),
-          borderSide: const BorderSide(color: input),
+          borderRadius: BorderRadius.circular(radiusLg),
+          borderSide: const BorderSide(color: border, width: 1),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radiusMd),
-          borderSide: const BorderSide(color: input),
+          borderRadius: BorderRadius.circular(radiusLg),
+          borderSide: const BorderSide(color: border, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radiusMd),
+          borderRadius: BorderRadius.circular(radiusLg),
           borderSide: const BorderSide(color: ring, width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radiusMd),
-          borderSide: const BorderSide(color: destructive),
+          borderRadius: BorderRadius.circular(radiusLg),
+          borderSide: const BorderSide(color: destructive, width: 1),
         ),
         contentPadding: const EdgeInsets.symmetric(
-          horizontal: space3,
-          vertical: space2,
+          horizontal: space4,
+          vertical: space3,
         ),
       ),
       cardTheme: CardThemeData(
@@ -266,7 +289,7 @@ class ShadcnTheme {
         shadowColor: Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radiusLg),
-          side: const BorderSide(color: border),
+          side: const BorderSide(color: border, width: 0.5),
         ),
         margin: EdgeInsets.zero,
       ),
@@ -290,3 +313,4 @@ class ShadcnTheme {
 extension ShadcnThemeExtension on BuildContext {
   ShadcnTheme get shadcn => ShadcnTheme();
 }
+

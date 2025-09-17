@@ -62,6 +62,11 @@ class ShadButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: ShadcnTheme.primary,
               foregroundColor: ShadcnTheme.primaryForeground,
+              elevation: 0,
+              shadowColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(ShadcnTheme.radiusLg),
+              ),
               padding: EdgeInsets.symmetric(
                 horizontal: size.horizontalPadding,
                 vertical: size.verticalPadding,
@@ -79,6 +84,11 @@ class ShadButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: ShadcnTheme.secondary,
               foregroundColor: ShadcnTheme.secondaryForeground,
+              elevation: 0,
+              shadowColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(ShadcnTheme.radiusLg),
+              ),
               padding: EdgeInsets.symmetric(
                 horizontal: size.horizontalPadding,
                 vertical: size.verticalPadding,
@@ -95,7 +105,10 @@ class ShadButton extends StatelessWidget {
             onPressed: isLoading ? null : onPressed,
             style: OutlinedButton.styleFrom(
               foregroundColor: ShadcnTheme.foreground,
-              side: const BorderSide(color: ShadcnTheme.border),
+              side: const BorderSide(color: ShadcnTheme.border, width: 1.5),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(ShadcnTheme.radiusLg),
+              ),
               padding: EdgeInsets.symmetric(
                 horizontal: size.horizontalPadding,
                 vertical: size.verticalPadding,
@@ -112,6 +125,9 @@ class ShadButton extends StatelessWidget {
             onPressed: isLoading ? null : onPressed,
             style: TextButton.styleFrom(
               foregroundColor: ShadcnTheme.foreground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(ShadcnTheme.radiusLg),
+              ),
               padding: EdgeInsets.symmetric(
                 horizontal: size.horizontalPadding,
                 vertical: size.verticalPadding,
@@ -157,7 +173,13 @@ class ShadCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final card = Card(
+    final card = Container(
+      decoration: BoxDecoration(
+        color: ShadcnTheme.card,
+        borderRadius: BorderRadius.circular(ShadcnTheme.radiusLg),
+        border: Border.all(color: ShadcnTheme.border, width: 0.5),
+        boxShadow: ShadcnTheme.shadowSm,
+      ),
       child: Padding(
         padding: padding ?? const EdgeInsets.all(ShadcnTheme.space6),
         child: child,
@@ -270,8 +292,9 @@ class ShadBanner extends StatelessWidget {
       padding: const EdgeInsets.all(ShadcnTheme.space4),
       decoration: BoxDecoration(
         color: colors.background,
-        border: Border.all(color: colors.border),
-        borderRadius: BorderRadius.circular(ShadcnTheme.radiusMd),
+        border: Border.all(color: colors.border, width: 0.5),
+        borderRadius: BorderRadius.circular(ShadcnTheme.radiusLg),
+        boxShadow: ShadcnTheme.shadowSm,
       ),
       child: Row(
         children: [
@@ -576,15 +599,249 @@ class ServiceCard extends StatelessWidget {
   Color _getCategoryColor() {
     switch (category.toLowerCase()) {
       case 'business':
-        return ShadcnTheme.lguBlue;
+        return ShadcnTheme.taskBlue;
       case 'property':
-        return ShadcnTheme.lguGreen;
+        return ShadcnTheme.primary;
       case 'civil registry':
-        return ShadcnTheme.lguOrange;
+        return ShadcnTheme.taskOrange;
       case 'identification':
-        return ShadcnTheme.lguRed;
+        return ShadcnTheme.taskPurple;
+      case 'health':
+        return ShadcnTheme.taskPink;
+      case 'social services':
+        return ShadcnTheme.primary;
+      case 'community':
+        return ShadcnTheme.taskBlue;
       default:
         return ShadcnTheme.primary;
     }
+  }
+}
+
+/// Modern progress card component matching the design
+class ProgressCard extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final double progress;
+  final Color progressColor;
+  final IconData icon;
+  final Color iconColor;
+  final VoidCallback? onTap;
+
+  const ProgressCard({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.progress,
+    required this.progressColor,
+    required this.icon,
+    required this.iconColor,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ShadCard(
+      onTap: onTap,
+      isClickable: onTap != null,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: iconColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(ShadcnTheme.radiusMd),
+                ),
+                child: Icon(
+                  icon,
+                  color: iconColor,
+                  size: 24,
+                ),
+              ),
+              const SizedBox(width: ShadcnTheme.space3),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      subtitle,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: ShadcnTheme.mutedForeground,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: ShadcnTheme.space2,
+                  vertical: ShadcnTheme.space1,
+                ),
+                decoration: BoxDecoration(
+                  color: progressColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(ShadcnTheme.radiusSm),
+                ),
+                child: Text(
+                  '${(progress * 100).round()}%',
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: progressColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: ShadcnTheme.space4),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(ShadcnTheme.radiusSm),
+            child: LinearProgressIndicator(
+              value: progress,
+              backgroundColor: ShadcnTheme.muted,
+              valueColor: AlwaysStoppedAnimation<Color>(progressColor),
+              minHeight: 6,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Modern task list item component
+class TaskListItem extends StatelessWidget {
+  final String title;
+  final String? subtitle;
+  final String? timeIndicator;
+  final bool isCompleted;
+  final IconData? icon;
+  final Color? iconColor;
+  final VoidCallback? onTap;
+  final VoidCallback? onToggle;
+
+  const TaskListItem({
+    super.key,
+    required this.title,
+    this.subtitle,
+    this.timeIndicator,
+    this.isCompleted = false,
+    this.icon,
+    this.iconColor,
+    this.onTap,
+    this.onToggle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: ShadcnTheme.space2),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(ShadcnTheme.radiusLg),
+          child: Container(
+            padding: const EdgeInsets.all(ShadcnTheme.space4),
+            decoration: BoxDecoration(
+              color: ShadcnTheme.background,
+              borderRadius: BorderRadius.circular(ShadcnTheme.radiusLg),
+              border: Border.all(color: ShadcnTheme.border, width: 0.5),
+            ),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: onToggle,
+                  child: Container(
+                    width: 24,
+                    height: 24,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: isCompleted ? ShadcnTheme.primary : ShadcnTheme.border,
+                        width: 2,
+                      ),
+                      color: isCompleted ? ShadcnTheme.primary : Colors.transparent,
+                    ),
+                    child: isCompleted
+                        ? const Icon(
+                            Icons.check,
+                            color: ShadcnTheme.primaryForeground,
+                            size: 16,
+                          )
+                        : null,
+                  ),
+                ),
+                const SizedBox(width: ShadcnTheme.space3),
+                if (icon != null) ...[
+                  Container(
+                    width: 32,
+                    height: 32,
+                    decoration: BoxDecoration(
+                      color: (iconColor ?? ShadcnTheme.primary).withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(ShadcnTheme.radiusSm),
+                    ),
+                    child: Icon(
+                      icon,
+                      color: iconColor ?? ShadcnTheme.primary,
+                      size: 18,
+                    ),
+                  ),
+                  const SizedBox(width: ShadcnTheme.space3),
+                ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          decoration: isCompleted ? TextDecoration.lineThrough : null,
+                          color: isCompleted ? ShadcnTheme.mutedForeground : ShadcnTheme.foreground,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      if (subtitle != null) ...[
+                        const SizedBox(height: ShadcnTheme.space1),
+                        Text(
+                          subtitle!,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: ShadcnTheme.mutedForeground,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                if (timeIndicator != null) ...[
+                  const SizedBox(width: ShadcnTheme.space2),
+                  Text(
+                    timeIndicator!,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: ShadcnTheme.mutedForeground,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+                const SizedBox(width: ShadcnTheme.space2),
+                Icon(
+                  Icons.more_vert,
+                  color: ShadcnTheme.mutedForeground,
+                  size: 20,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
