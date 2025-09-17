@@ -28,6 +28,7 @@ import '../../features/phase3/open_data_portal/presentation/pages/open_data_port
 import '../../shared/widgets/main_navigation.dart';
 import '../../shared/widgets/onboarding_page.dart';
 import '../../shared/widgets/splash_page.dart';
+import '../../shared/widgets/stories_carousel.dart';
 
 /// Application router configuration
 class AppRouter {
@@ -325,6 +326,11 @@ class HomePage extends StatelessWidget {
             
             const SizedBox(height: 24),
             
+            // Stories/MyDay Carousel Section
+            const StoriesCarousel(),
+            
+            const SizedBox(height: 24),
+            
             // Quick Actions Section
             Text(
               'Quick Actions',
@@ -481,79 +487,65 @@ class HomePage extends StatelessWidget {
             
             const SizedBox(height: 16),
             
-            _ServiceCard(
-              icon: Icons.people,
-              title: 'Community',
-              subtitle: 'Events, Jobs, Marketplace',
-              color: const Color(0xFF0038A8), // Philippine Flag Blue
-              onTap: () => context.go(AppRouter.community),
-              isFullWidth: true,
-            ),
-            
-            const SizedBox(height: 16),
-            
-            _ServiceCard(
-              icon: Icons.groups,
-              title: 'Community Groups',
-              subtitle: 'Discussion & Moderation',
-              color: const Color(0xFFCE1126), // Philippine Flag Red
-              onTap: () => context.go('/community-groups'),
-              isFullWidth: true,
-            ),
-            
-            const SizedBox(height: 16),
-            
-            _ServiceCard(
-              icon: Icons.map,
-              title: 'EVAC Map',
-              subtitle: 'Disaster & Evacuation Centers',
-              color: const Color(0xFFFCD116), // Philippine Flag Yellow
-              onTap: () => context.go('/evac-map'),
-              isFullWidth: true,
-            ),
-            
-            const SizedBox(height: 16),
-            
-            _ServiceCard(
-              icon: Icons.delete,
-              title: 'Waste Schedule',
-              subtitle: 'Garbage collection schedule',
-              color: const Color(0xFF0038A8), // Philippine Flag Blue
-              onTap: () => context.go('/waste-schedule'),
-              isFullWidth: true,
-            ),
-            
-            const SizedBox(height: 16),
-            
-            _ServiceCard(
-              icon: Icons.report_problem,
-              title: 'Hazard Reporting',
-              subtitle: 'Report road damage, flooding',
-              color: const Color(0xFFCE1126), // Philippine Flag Red
-              onTap: () => context.go('/hazard-reporting'),
-              isFullWidth: true,
-            ),
-            
-            const SizedBox(height: 16),
-            
-            _ServiceCard(
-              icon: Icons.analytics,
-              title: 'Transparency Dashboard',
-              subtitle: 'SLA metrics & collection stats',
-              color: const Color(0xFFFCD116), // Philippine Flag Yellow
-              onTap: () => context.go('/transparency-dashboards'),
-              isFullWidth: true,
-            ),
-            
-            const SizedBox(height: 16),
-            
-            _ServiceCard(
-              icon: Icons.dataset,
-              title: 'Open Data Portal',
-              subtitle: 'Public datasets & information',
-              color: const Color(0xFF0038A8), // Philippine Flag Blue
-              onTap: () => context.go('/open-data-portal'),
-              isFullWidth: true,
+            // Community Grid - 2 items per row
+            GridView.count(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: 1.2,
+              children: [
+                _ServiceCard(
+                  icon: Icons.people,
+                  title: 'Community',
+                  subtitle: 'Events, Jobs, Marketplace',
+                  color: const Color(0xFF0038A8), // Philippine Flag Blue
+                  onTap: () => context.go(AppRouter.community),
+                ),
+                _ServiceCard(
+                  icon: Icons.groups,
+                  title: 'Community Groups',
+                  subtitle: 'Discussion & Moderation',
+                  color: const Color(0xFFCE1126), // Philippine Flag Red
+                  onTap: () => context.go('/community-groups'),
+                ),
+                _ServiceCard(
+                  icon: Icons.map,
+                  title: 'EVAC Map',
+                  subtitle: 'Disaster & Evacuation Centers',
+                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
+                  onTap: () => context.go('/evac-map'),
+                ),
+                _ServiceCard(
+                  icon: Icons.delete,
+                  title: 'Waste Schedule',
+                  subtitle: 'Garbage collection schedule',
+                  color: const Color(0xFF0038A8), // Philippine Flag Blue
+                  onTap: () => context.go('/waste-schedule'),
+                ),
+                _ServiceCard(
+                  icon: Icons.report_problem,
+                  title: 'Hazard Reporting',
+                  subtitle: 'Report road damage, flooding',
+                  color: const Color(0xFFCE1126), // Philippine Flag Red
+                  onTap: () => context.go('/hazard-reporting'),
+                ),
+                _ServiceCard(
+                  icon: Icons.analytics,
+                  title: 'Transparency Dashboard',
+                  subtitle: 'SLA metrics & collection stats',
+                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
+                  onTap: () => context.go('/transparency-dashboards'),
+                ),
+                _ServiceCard(
+                  icon: Icons.dataset,
+                  title: 'Open Data Portal',
+                  subtitle: 'Public datasets & information',
+                  color: const Color(0xFF0038A8), // Philippine Flag Blue
+                  onTap: () => context.go('/open-data-portal'),
+                ),
+              ],
             ),
             
             const SizedBox(height: 24),

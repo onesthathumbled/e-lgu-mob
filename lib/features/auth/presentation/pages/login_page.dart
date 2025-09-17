@@ -20,6 +20,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   bool _obscurePassword = true;
 
   @override
+  void initState() {
+    super.initState();
+    // Auto-fill demo credentials
+    _emailController.text = 'john.doe@email.com';
+    _passwordController.text = 'password123';
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();

@@ -25,6 +25,19 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _agreeToTerms = false;
 
   @override
+  void initState() {
+    super.initState();
+    // Auto-fill demo data
+    _firstNameController.text = 'John';
+    _lastNameController.text = 'Doe';
+    _emailController.text = 'john.doe@email.com';
+    _phoneController.text = '+63 912 345 6789';
+    _passwordController.text = 'password123';
+    _confirmPasswordController.text = 'password123';
+    _agreeToTerms = true;
+  }
+
+  @override
   void dispose() {
     _firstNameController.dispose();
     _lastNameController.dispose();
