@@ -122,7 +122,7 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
     }
 
     return Container(
-      height: 160,
+      height: 180,
       margin: const EdgeInsets.symmetric(vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,7 +138,7 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
             ),
           ),
           
-          const SizedBox(height: 12),
+          const SizedBox(height: 8),
           
           // Horizontal scrollable stories
           Expanded(
@@ -253,19 +253,9 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
               ),
             ),
             
-            const SizedBox(height: 6),
+            const SizedBox(height: 4),
             
-            // Author name
-            Text(
-              'Mayor',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontSize: 11,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
+            
           ],
         ),
       ),
