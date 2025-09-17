@@ -238,11 +238,20 @@ class AppRouter {
 }
 
 /// Home page with service overview
-class HomePage extends ConsumerWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
+  bool _showAllQuickActions = false;
+  bool _showAllGovernmentServices = false;
+  bool _showAllCommunity = false;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -373,44 +382,20 @@ class HomePage extends ConsumerWidget {
             
             const SizedBox(height: 16),
             
-            // Quick Actions Grid
-            GridView.count(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 1.2,
-              children: [
-                _ServiceCard(
-                  icon: Icons.business,
-                  title: 'Business Permits',
-                  subtitle: 'BPLS Services',
-                  color: const Color(0xFF3B82F6), // Modern Blue
-                  onTap: () => context.go(AppRouter.businessPermits),
-                ),
-                _ServiceCard(
-                  icon: Icons.home,
-                  title: 'Property Tax',
-                  subtitle: 'RPT Payments',
-                  color: const Color(0xFF34C759), // Modern Green
-                  onTap: () => context.go(AppRouter.propertyTax),
-                ),
-                _ServiceCard(
-                  icon: Icons.credit_card,
-                  title: 'Digital ID',
-                  subtitle: 'Local ID Card',
-                  color: const Color(0xFFEA580C), // Modern Orange
-                  onTap: () => context.go(AppRouter.digitalId),
-                ),
-                _ServiceCard(
-                  icon: Icons.queue,
-                  title: 'Queue Management',
-                  subtitle: 'Digital Queue',
-                  color: const Color(0xFF8B5CF6), // Modern Purple
-                  onTap: () => context.go('/queue-management'),
-                ),
+            // Quick Actions Grid - 3 items per row, max 6 items
+            _buildServiceGrid(
+              services: [
+                _ServiceItem(Icons.business, 'Business Permits', 'BPLS', () => context.go(AppRouter.businessPermits)),
+                _ServiceItem(Icons.home, 'Property Tax', 'RPT', () => context.go(AppRouter.propertyTax)),
+                _ServiceItem(Icons.credit_card, 'Digital ID', 'Local ID', () => context.go(AppRouter.digitalId)),
+                _ServiceItem(Icons.queue, 'Queue Mgmt', 'Digital Queue', () => context.go('/queue-management')),
+                _ServiceItem(Icons.description, 'Civil Registry', 'Birth, Marriage', () => context.go(AppRouter.civilRegistry)),
+                _ServiceItem(Icons.health_and_safety, 'Permits', 'Health, Work', () => context.go(AppRouter.permits)),
+                _ServiceItem(Icons.volunteer_activism, 'Social Programs', 'Assistance', () => context.go(AppRouter.socialPrograms)),
+                _ServiceItem(Icons.construction, 'Building Permits', 'OBOS', () => context.go('/obos-application')),
               ],
+              showAll: _showAllQuickActions,
+              onToggleShowAll: () => setState(() => _showAllQuickActions = !_showAllQuickActions),
             ),
             
             const SizedBox(height: 24),
@@ -427,86 +412,24 @@ class HomePage extends ConsumerWidget {
             
             const SizedBox(height: 16),
             
-            // Government Services Grid
-            GridView.count(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 1.2,
-              children: [
-                _ServiceCard(
-                  icon: Icons.credit_card,
-                  title: 'Digital ID',
-                  subtitle: 'LGU ID Services',
-                  color: const Color(0xFFEA580C), // Modern Orange
-                  onTap: () => context.go(AppRouter.digitalId),
-                ),
-                _ServiceCard(
-                  icon: Icons.description,
-                  title: 'Civil Registry',
-                  subtitle: 'Birth, Marriage, Death',
-                  color: const Color(0xFF8B5CF6), // Modern Purple
-                  onTap: () => context.go(AppRouter.civilRegistry),
-                ),
-                _ServiceCard(
-                  icon: Icons.health_and_safety,
-                  title: 'Permits',
-                  subtitle: 'Health, Work, Sanitation',
-                  color: const Color(0xFFEC4899), // Modern Pink
-                  onTap: () => context.go(AppRouter.permits),
-                ),
-                _ServiceCard(
-                  icon: Icons.volunteer_activism,
-                  title: 'Social Programs',
-                  subtitle: 'Assistance & Aid',
-                  color: const Color(0xFF34C759), // Modern Green
-                  onTap: () => context.go(AppRouter.socialPrograms),
-                ),
-                _ServiceCard(
-                  icon: Icons.queue,
-                  title: 'Queue Management',
-                  subtitle: 'Digital Queue & Ticketing',
-                  color: const Color(0xFF3B82F6), // Modern Blue
-                  onTap: () => context.go('/queue-management'),
-                ),
-                _ServiceCard(
-                  icon: Icons.construction,
-                  title: 'Building Permits',
-                  subtitle: 'OBOS Applications',
-                  color: const Color(0xFFEA580C), // Modern Orange
-                  onTap: () => context.go('/obos-application'),
-                ),
-                _ServiceCard(
-                  icon: Icons.local_taxi,
-                  title: 'Transport Services',
-                  subtitle: 'Tricycle, Parking, Violations',
-                  color: const Color(0xFF34C759), // Modern Green
-                  onTap: () => context.go('/transport-services'),
-                ),
-                _ServiceCard(
-                  icon: Icons.event,
-                  title: 'Facility Bookings',
-                  subtitle: 'Reserve halls, gyms, courts',
-                  color: const Color(0xFF8B5CF6), // Modern Purple
-                  onTap: () => context.go('/facility-bookings'),
-                ),
-                _ServiceCard(
-                  icon: Icons.calendar_today,
-                  title: 'Events Calendar',
-                  subtitle: 'Community events & RSVP',
-                  color: const Color(0xFFEC4899), // Modern Pink
-                  onTap: () => context.go('/events-calendar'),
-                ),
-                _ServiceCard(
-                  icon: Icons.pets,
-                  title: 'Pet Registration',
-                  subtitle: 'Register pets & vaccinations',
-                  color: const Color(0xFFEA580C), // Modern Orange
-                  onTap: () => context.go('/pet-registration'),
-                ),
+            // Government Services Grid - 3 items per row, max 6 items
+            _buildServiceGrid(
+              services: [
+                _ServiceItem(Icons.credit_card, 'Digital ID', 'LGU ID', () => context.go(AppRouter.digitalId)),
+                _ServiceItem(Icons.description, 'Civil Registry', 'Birth, Marriage', () => context.go(AppRouter.civilRegistry)),
+                _ServiceItem(Icons.health_and_safety, 'Permits', 'Health, Work', () => context.go(AppRouter.permits)),
+                _ServiceItem(Icons.volunteer_activism, 'Social Programs', 'Assistance', () => context.go(AppRouter.socialPrograms)),
+                _ServiceItem(Icons.queue, 'Queue Mgmt', 'Digital Queue', () => context.go('/queue-management')),
+                _ServiceItem(Icons.construction, 'Building Permits', 'OBOS', () => context.go('/obos-application')),
+                _ServiceItem(Icons.local_taxi, 'Transport', 'Tricycle, Parking', () => context.go('/transport-services')),
+                _ServiceItem(Icons.event, 'Facility Bookings', 'Reserve halls', () => context.go('/facility-bookings')),
+                _ServiceItem(Icons.calendar_today, 'Events', 'Community events', () => context.go('/events-calendar')),
+                _ServiceItem(Icons.pets, 'Pet Registration', 'Register pets', () => context.go('/pet-registration')),
+                _ServiceItem(Icons.groups, 'Community Groups', 'Discussion', () => context.go('/community-groups')),
+                _ServiceItem(Icons.emoji_events, 'Gamification', 'Points, badges', () => context.go('/gamification')),
               ],
+              showAll: _showAllGovernmentServices,
+              onToggleShowAll: () => setState(() => _showAllGovernmentServices = !_showAllGovernmentServices),
             ),
             
             const SizedBox(height: 24),
@@ -523,65 +446,19 @@ class HomePage extends ConsumerWidget {
             
             const SizedBox(height: 16),
             
-            // Community Grid - 2 items per row
-            GridView.count(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 1.2,
-              children: [
-                _ServiceCard(
-                  icon: Icons.people,
-                  title: 'Community',
-                  subtitle: 'Events, Jobs, Marketplace',
-                  color: const Color(0xFF3B82F6), // Modern Blue
-                  onTap: () => context.go(AppRouter.community),
-                ),
-                _ServiceCard(
-                  icon: Icons.groups,
-                  title: 'Community Groups',
-                  subtitle: 'Discussion & Moderation',
-                  color: const Color(0xFFEC4899), // Modern Pink
-                  onTap: () => context.go('/community-groups'),
-                ),
-                _ServiceCard(
-                  icon: Icons.map,
-                  title: 'EVAC Map',
-                  subtitle: 'Disaster & Evacuation Centers',
-                  color: const Color(0xFF34C759), // Modern Green
-                  onTap: () => context.go('/evac-map'),
-                ),
-                _ServiceCard(
-                  icon: Icons.delete,
-                  title: 'Waste Schedule',
-                  subtitle: 'Garbage collection schedule',
-                  color: const Color(0xFF8B5CF6), // Modern Purple
-                  onTap: () => context.go('/waste-schedule'),
-                ),
-                _ServiceCard(
-                  icon: Icons.report_problem,
-                  title: 'Hazard Reporting',
-                  subtitle: 'Report road damage, flooding',
-                  color: const Color(0xFFEA580C), // Modern Orange
-                  onTap: () => context.go('/hazard-reporting'),
-                ),
-                _ServiceCard(
-                  icon: Icons.analytics,
-                  title: 'Transparency Dashboard',
-                  subtitle: 'SLA metrics & collection stats',
-                  color: const Color(0xFF3B82F6), // Modern Blue
-                  onTap: () => context.go('/transparency-dashboards'),
-                ),
-                _ServiceCard(
-                  icon: Icons.dataset,
-                  title: 'Open Data Portal',
-                  subtitle: 'Public datasets & information',
-                  color: const Color(0xFFEC4899), // Modern Pink
-                  onTap: () => context.go('/open-data-portal'),
-                ),
+            // Community Grid - 3 items per row, max 6 items
+            _buildServiceGrid(
+              services: [
+                _ServiceItem(Icons.people, 'Community', 'Events, Jobs', () => context.go(AppRouter.community)),
+                _ServiceItem(Icons.groups, 'Community Groups', 'Discussion', () => context.go('/community-groups')),
+                _ServiceItem(Icons.map, 'EVAC Map', 'Disaster Centers', () => context.go('/evac-map')),
+                _ServiceItem(Icons.delete, 'Waste Schedule', 'Garbage', () => context.go('/waste-schedule')),
+                _ServiceItem(Icons.report_problem, 'Hazard Reporting', 'Report damage', () => context.go('/hazard-reporting')),
+                _ServiceItem(Icons.analytics, 'Transparency', 'SLA metrics', () => context.go('/transparency-dashboards')),
+                _ServiceItem(Icons.dataset, 'Open Data', 'Public datasets', () => context.go('/open-data-portal')),
               ],
+              showAll: _showAllCommunity,
+              onToggleShowAll: () => setState(() => _showAllCommunity = !_showAllCommunity),
             ),
             
             const SizedBox(height: 24),
@@ -773,6 +650,77 @@ class HomePage extends ConsumerWidget {
       ),
     );
   }
+
+  Widget _buildServiceGrid({
+    required List<_ServiceItem> services,
+    required bool showAll,
+    required VoidCallback onToggleShowAll,
+  }) {
+    final displayServices = showAll ? services : services.take(6).toList();
+    final hasMore = services.length > 6;
+
+    return Column(
+      children: [
+        GridView.count(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          crossAxisCount: 3,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
+          childAspectRatio: 0.9,
+          children: displayServices.map((service) => _ServiceCard(
+            icon: service.icon,
+            title: service.title,
+            subtitle: service.subtitle,
+            color: const Color(0xFF34C759), // Modern Green
+            onTap: service.onTap,
+          )).toList(),
+        ),
+        if (hasMore) ...[
+          const SizedBox(height: 16),
+          GestureDetector(
+            onTap: onToggleShowAll,
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+              decoration: BoxDecoration(
+                color: const Color(0xFF34C759).withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: const Color(0xFF34C759), width: 1),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    showAll ? 'See Less' : 'See More',
+                    style: const TextStyle(
+                      color: Color(0xFF34C759),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Icon(
+                    showAll ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                    color: const Color(0xFF34C759),
+                    size: 20,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+class _ServiceItem {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  _ServiceItem(this.icon, this.title, this.subtitle, this.onTap);
 }
 
 class _ServiceCard extends StatelessWidget {
@@ -783,6 +731,7 @@ class _ServiceCard extends StatelessWidget {
     required this.color,
     required this.onTap,
     this.isFullWidth = false,
+    this.isCompact = false,
   });
 
   final IconData icon;
@@ -791,6 +740,7 @@ class _ServiceCard extends StatelessWidget {
   final Color color;
   final VoidCallback onTap;
   final bool isFullWidth;
+  final bool isCompact;
 
   @override
   Widget build(BuildContext context) {
@@ -813,13 +763,13 @@ class _ServiceCard extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(16),
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(isCompact ? 12 : 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: 48,
-                  height: 48,
+                  width: isCompact ? 36 : 48,
+                  height: isCompact ? 36 : 48,
                   decoration: BoxDecoration(
                     color: color.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
@@ -827,27 +777,29 @@ class _ServiceCard extends StatelessWidget {
                   child: Icon(
                     icon,
                     color: color,
-                    size: 28,
+                    size: isCompact ? 20 : 28,
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: isCompact ? 8 : 16),
                 Text(
                   title,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
-                    fontSize: 16,
+                    fontSize: isCompact ? 12 : 16,
                   ),
                   textAlign: TextAlign.center,
+                  maxLines: isCompact ? 2 : 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: isCompact ? 4 : 6),
                 Text(
                   subtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: const Color(0xFF6B7280),
-                    fontSize: 12,
+                    fontSize: isCompact ? 10 : 12,
                   ),
                   textAlign: TextAlign.center,
-                  maxLines: 2,
+                  maxLines: isCompact ? 2 : 2,
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
