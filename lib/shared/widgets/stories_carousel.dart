@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../theme/shadcn_theme.dart';
 
 /// Story/MyDay entity for the carousel
 class StoryEntity {
@@ -38,16 +39,16 @@ class StoriesCarousel extends StatefulWidget {
 
 class _StoriesCarouselState extends State<StoriesCarousel> {
   
-  // Mock stories data - only mayor stories
+  // Mock stories data - only mayor stories with modern colors
   final List<StoryEntity> _stories = [
     StoryEntity(
       id: '1',
       title: 'Weekly Update',
       subtitle: 'Mayor\'s weekly message to the community',
-      imageUrl: 'https://via.placeholder.com/300x400/0038A8/FFFFFF?text=Mayor+Message',
+      imageUrl: 'https://via.placeholder.com/300x400/34C759/FFFFFF?text=Mayor+Message',
       videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
       author: 'Mayor Juan Santos',
-      authorImageUrl: 'https://via.placeholder.com/50x50/0038A8/FFFFFF?text=JS',
+      authorImageUrl: 'https://via.placeholder.com/50x50/34C759/FFFFFF?text=JS',
       createdAt: DateTime.now().subtract(const Duration(hours: 2)),
       duration: const Duration(seconds: 15),
       isVideo: true,
@@ -56,10 +57,10 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
       id: '2',
       title: 'Infrastructure Progress',
       subtitle: 'Updates on ongoing infrastructure projects',
-      imageUrl: 'https://via.placeholder.com/300x400/CE1126/FFFFFF?text=Infrastructure',
+      imageUrl: 'https://via.placeholder.com/300x400/3B82F6/FFFFFF?text=Infrastructure',
       videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
       author: 'Mayor Juan Santos',
-      authorImageUrl: 'https://via.placeholder.com/50x50/0038A8/FFFFFF?text=JS',
+      authorImageUrl: 'https://via.placeholder.com/50x50/34C759/FFFFFF?text=JS',
       createdAt: DateTime.now().subtract(const Duration(hours: 4)),
       duration: const Duration(seconds: 12),
       isVideo: true,
@@ -68,10 +69,10 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
       id: '3',
       title: 'Community Programs',
       subtitle: 'New community programs and initiatives',
-      imageUrl: 'https://via.placeholder.com/300x400/FCD116/000000?text=Programs',
+      imageUrl: 'https://via.placeholder.com/300x400/EA580C/FFFFFF?text=Programs',
       videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
       author: 'Mayor Juan Santos',
-      authorImageUrl: 'https://via.placeholder.com/50x50/0038A8/FFFFFF?text=JS',
+      authorImageUrl: 'https://via.placeholder.com/50x50/34C759/FFFFFF?text=JS',
       createdAt: DateTime.now().subtract(const Duration(hours: 6)),
       duration: const Duration(seconds: 18),
       isVideo: true,
@@ -80,10 +81,10 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
       id: '4',
       title: 'Public Safety Update',
       subtitle: 'Important safety information for residents',
-      imageUrl: 'https://via.placeholder.com/300x400/0038A8/FFFFFF?text=Safety',
+      imageUrl: 'https://via.placeholder.com/300x400/8B5CF6/FFFFFF?text=Safety',
       videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
       author: 'Mayor Juan Santos',
-      authorImageUrl: 'https://via.placeholder.com/50x50/0038A8/FFFFFF?text=JS',
+      authorImageUrl: 'https://via.placeholder.com/50x50/34C759/FFFFFF?text=JS',
       createdAt: DateTime.now().subtract(const Duration(hours: 8)),
       duration: const Duration(seconds: 20),
       isVideo: true,
@@ -92,10 +93,10 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
       id: '5',
       title: 'Economic Development',
       subtitle: 'Updates on local economic development',
-      imageUrl: 'https://via.placeholder.com/300x400/CE1126/FFFFFF?text=Economy',
+      imageUrl: 'https://via.placeholder.com/300x400/EC4899/FFFFFF?text=Economy',
       videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
       author: 'Mayor Juan Santos',
-      authorImageUrl: 'https://via.placeholder.com/50x50/0038A8/FFFFFF?text=JS',
+      authorImageUrl: 'https://via.placeholder.com/50x50/34C759/FFFFFF?text=JS',
       createdAt: DateTime.now().subtract(const Duration(hours: 10)),
       duration: const Duration(seconds: 14),
       isVideo: true,
@@ -165,17 +166,17 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
         margin: const EdgeInsets.only(right: 12),
         child: Column(
           children: [
-            // Story rectangle with gradient border
+            // Story rectangle with modern gradient border
             Container(
               width: 80,
               height: 120,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(16),
                 gradient: LinearGradient(
                   colors: [
-                    const Color(0xFF0038A8),
-                    const Color(0xFFCE1126),
-                    const Color(0xFFFCD116),
+                    ShadcnTheme.primary,
+                    ShadcnTheme.taskBlue,
+                    ShadcnTheme.taskOrange,
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -184,24 +185,24 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
               child: Container(
                 margin: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(9),
+                  borderRadius: BorderRadius.circular(13),
                   color: Colors.white,
                 ),
                 child: Container(
                   margin: const EdgeInsets.all(2),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7),
+                    borderRadius: BorderRadius.circular(11),
                     gradient: LinearGradient(
                       colors: [
-                        const Color(0xFF0038A8).withValues(alpha: 0.8),
-                        const Color(0xFFCE1126).withValues(alpha: 0.8),
+                        ShadcnTheme.primary.withValues(alpha: 0.8),
+                        ShadcnTheme.taskBlue.withValues(alpha: 0.8),
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(7),
+                    borderRadius: BorderRadius.circular(11),
                     child: story.isVideo
                         ? Stack(
                             fit: StackFit.expand,
@@ -211,7 +212,7 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) {
                                   return Container(
-                                    color: const Color(0xFF0038A8),
+                                    color: ShadcnTheme.primary,
                                     child: const Icon(
                                       Icons.play_circle_filled,
                                       color: Colors.white,
@@ -239,7 +240,7 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) {
                               return Container(
-                                color: const Color(0xFF0038A8),
+                                color: ShadcnTheme.primary,
                                 child: const Icon(
                                   Icons.image,
                                   color: Colors.white,
@@ -253,9 +254,20 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
               ),
             ),
             
-            const SizedBox(height: 4),
+            const SizedBox(height: 6),
             
-            
+            // Story title
+            // Text(
+            //   story.title,
+            //   style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            //     color: ShadcnTheme.foreground,
+            //     fontWeight: FontWeight.w500,
+            //     fontSize: 11,
+            //   ),
+            //   textAlign: TextAlign.center,
+            //   maxLines: 2,
+            //   overflow: TextOverflow.ellipsis,
+            // ),
           ],
         ),
       ),
@@ -424,7 +436,7 @@ class _FullScreenStoryViewState extends State<FullScreenStoryView>
                           return LinearProgressIndicator(
                             value: progress,
                             backgroundColor: Colors.white.withValues(alpha: 0.3),
-                            valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+                            valueColor: AlwaysStoppedAnimation<Color>(ShadcnTheme.primary),
                           );
                         },
                       ),
@@ -593,8 +605,8 @@ class _FullScreenStoryViewState extends State<FullScreenStoryView>
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        const Color(0xFF0038A8).withValues(alpha: 0.8),
-                        const Color(0xFFCE1126).withValues(alpha: 0.8),
+                        ShadcnTheme.primary.withValues(alpha: 0.8),
+                        ShadcnTheme.taskBlue.withValues(alpha: 0.8),
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -793,7 +805,7 @@ class StoryDetailModal extends StatelessWidget {
                             child: Icon(
                               Icons.play_circle_filled,
                               size: 60,
-                              color: Color(0xFF0038A8),
+                              color: Color(0xFF34C759),
                             ),
                           )
                         : const Center(
@@ -823,7 +835,7 @@ class StoryDetailModal extends StatelessWidget {
                           icon: const Icon(Icons.share),
                           label: const Text('Share'),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF0038A8),
+                            backgroundColor: ShadcnTheme.primary,
                             foregroundColor: Colors.white,
                           ),
                         ),
@@ -842,8 +854,8 @@ class StoryDetailModal extends StatelessWidget {
                           icon: const Icon(Icons.favorite_border),
                           label: const Text('Like'),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: const Color(0xFF0038A8),
-                            side: const BorderSide(color: Color(0xFF0038A8)),
+                            foregroundColor: ShadcnTheme.primary,
+                            side: BorderSide(color: ShadcnTheme.primary),
                           ),
                         ),
                       ),

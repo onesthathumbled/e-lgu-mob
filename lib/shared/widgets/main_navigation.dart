@@ -234,7 +234,14 @@ class ServicesDrawer extends StatelessWidget {
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
+              gradient: LinearGradient(
+                colors: [
+                  ShadcnTheme.primary,
+                  ShadcnTheme.primary.withValues(alpha: 0.8),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -465,13 +472,35 @@ class _ServiceTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(
-        icon,
-        color: Theme.of(context).colorScheme.primary,
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: ShadcnTheme.primary.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(ShadcnTheme.radiusMd),
+        ),
+        child: Icon(
+          icon,
+          color: ShadcnTheme.primary,
+          size: 20,
+        ),
       ),
-      title: Text(title),
-      subtitle: Text(subtitle),
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+          color: ShadcnTheme.mutedForeground,
+        ),
+      ),
       onTap: onTap,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(ShadcnTheme.radiusMd),
+      ),
     );
   }
 }

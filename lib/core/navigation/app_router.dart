@@ -245,12 +245,38 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('e-LGU'),
+        title: const Text(
+          '🇵🇭 e-LGU',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
+          ),
+        ),
         centerTitle: true,
+        backgroundColor: Colors.white,
+        foregroundColor: const Color(0xFF1A1A1A),
+        elevation: 0,
+        shadowColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () => Scaffold.of(context).openEndDrawer(),
+          Container(
+            margin: const EdgeInsets.only(right: 8),
+            child: IconButton(
+              icon: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF34C759).withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.menu,
+                  color: Color(0xFF34C759),
+                  size: 20,
+                ),
+              ),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+            ),
           ),
         ],
       ),
@@ -330,198 +356,6 @@ class HomePage extends ConsumerWidget {
             
             const SizedBox(height: 24),
             
-            // Progress Cards Section
-            Text(
-              'Today\'s Progress',
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 16),
-            
-            // Progress Cards
-            Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: const Color(0xFFE5E7EB), width: 0.5),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x08000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 1),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFEA580C).withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: const Icon(
-                              Icons.medication,
-                              color: Color(0xFFEA580C),
-                              size: 24,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          const Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Take the medicine',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  '3 times a day',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Color(0xFF6B7280),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF34C759).withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: const Text(
-                              '33%',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Color(0xFF34C759),
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: const LinearProgressIndicator(
-                          value: 0.33,
-                          backgroundColor: Color(0xFFF8F9FA),
-                          valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF34C759)),
-                          minHeight: 6,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: const Color(0xFFE5E7EB), width: 0.5),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x08000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 1),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF34C759).withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: const Icon(
-                              Icons.music_note,
-                              color: Color(0xFF34C759),
-                              size: 24,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          const Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Music lesson',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  'The sixth',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Color(0xFF6B7280),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF6B7280).withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: const Text(
-                              '0%',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Color(0xFF6B7280),
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: const LinearProgressIndicator(
-                          value: 0.0,
-                          backgroundColor: Color(0xFFF8F9FA),
-                          valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF6B7280)),
-                          minHeight: 6,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            
-            const SizedBox(height: 24),
-            
             // Stories/MyDay Carousel Section
             const StoriesCarousel(),
             
@@ -531,7 +365,9 @@ class HomePage extends ConsumerWidget {
             Text(
               'Quick Actions',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
+                color: const Color(0xFF1A1A1A),
+                fontSize: 20,
               ),
             ),
             
@@ -583,7 +419,9 @@ class HomePage extends ConsumerWidget {
             Text(
               'Government Services',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
+                color: const Color(0xFF1A1A1A),
+                fontSize: 20,
               ),
             ),
             
@@ -602,70 +440,70 @@ class HomePage extends ConsumerWidget {
                   icon: Icons.credit_card,
                   title: 'Digital ID',
                   subtitle: 'LGU ID Services',
-                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
+                  color: const Color(0xFFEA580C), // Modern Orange
                   onTap: () => context.go(AppRouter.digitalId),
                 ),
                 _ServiceCard(
                   icon: Icons.description,
                   title: 'Civil Registry',
                   subtitle: 'Birth, Marriage, Death',
-                  color: const Color(0xFF0038A8), // Philippine Flag Blue
+                  color: const Color(0xFF8B5CF6), // Modern Purple
                   onTap: () => context.go(AppRouter.civilRegistry),
                 ),
                 _ServiceCard(
                   icon: Icons.health_and_safety,
                   title: 'Permits',
                   subtitle: 'Health, Work, Sanitation',
-                  color: const Color(0xFFCE1126), // Philippine Flag Red
+                  color: const Color(0xFFEC4899), // Modern Pink
                   onTap: () => context.go(AppRouter.permits),
                 ),
                 _ServiceCard(
                   icon: Icons.volunteer_activism,
                   title: 'Social Programs',
                   subtitle: 'Assistance & Aid',
-                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
+                  color: const Color(0xFF34C759), // Modern Green
                   onTap: () => context.go(AppRouter.socialPrograms),
                 ),
                 _ServiceCard(
                   icon: Icons.queue,
                   title: 'Queue Management',
                   subtitle: 'Digital Queue & Ticketing',
-                  color: const Color(0xFF0038A8), // Philippine Flag Blue
+                  color: const Color(0xFF3B82F6), // Modern Blue
                   onTap: () => context.go('/queue-management'),
                 ),
                 _ServiceCard(
                   icon: Icons.construction,
                   title: 'Building Permits',
                   subtitle: 'OBOS Applications',
-                  color: const Color(0xFFCE1126), // Philippine Flag Red
+                  color: const Color(0xFFEA580C), // Modern Orange
                   onTap: () => context.go('/obos-application'),
                 ),
                 _ServiceCard(
                   icon: Icons.local_taxi,
                   title: 'Transport Services',
                   subtitle: 'Tricycle, Parking, Violations',
-                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
+                  color: const Color(0xFF34C759), // Modern Green
                   onTap: () => context.go('/transport-services'),
                 ),
                 _ServiceCard(
                   icon: Icons.event,
                   title: 'Facility Bookings',
                   subtitle: 'Reserve halls, gyms, courts',
-                  color: const Color(0xFF0038A8), // Philippine Flag Blue
+                  color: const Color(0xFF8B5CF6), // Modern Purple
                   onTap: () => context.go('/facility-bookings'),
                 ),
                 _ServiceCard(
                   icon: Icons.calendar_today,
                   title: 'Events Calendar',
                   subtitle: 'Community events & RSVP',
-                  color: const Color(0xFFCE1126), // Philippine Flag Red
+                  color: const Color(0xFFEC4899), // Modern Pink
                   onTap: () => context.go('/events-calendar'),
                 ),
                 _ServiceCard(
                   icon: Icons.pets,
                   title: 'Pet Registration',
                   subtitle: 'Register pets & vaccinations',
-                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
+                  color: const Color(0xFFEA580C), // Modern Orange
                   onTap: () => context.go('/pet-registration'),
                 ),
               ],
@@ -677,7 +515,9 @@ class HomePage extends ConsumerWidget {
             Text(
               'Community',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
+                color: const Color(0xFF1A1A1A),
+                fontSize: 20,
               ),
             ),
             
@@ -696,49 +536,49 @@ class HomePage extends ConsumerWidget {
                   icon: Icons.people,
                   title: 'Community',
                   subtitle: 'Events, Jobs, Marketplace',
-                  color: const Color(0xFF0038A8), // Philippine Flag Blue
+                  color: const Color(0xFF3B82F6), // Modern Blue
                   onTap: () => context.go(AppRouter.community),
                 ),
                 _ServiceCard(
                   icon: Icons.groups,
                   title: 'Community Groups',
                   subtitle: 'Discussion & Moderation',
-                  color: const Color(0xFFCE1126), // Philippine Flag Red
+                  color: const Color(0xFFEC4899), // Modern Pink
                   onTap: () => context.go('/community-groups'),
                 ),
                 _ServiceCard(
                   icon: Icons.map,
                   title: 'EVAC Map',
                   subtitle: 'Disaster & Evacuation Centers',
-                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
+                  color: const Color(0xFF34C759), // Modern Green
                   onTap: () => context.go('/evac-map'),
                 ),
                 _ServiceCard(
                   icon: Icons.delete,
                   title: 'Waste Schedule',
                   subtitle: 'Garbage collection schedule',
-                  color: const Color(0xFF0038A8), // Philippine Flag Blue
+                  color: const Color(0xFF8B5CF6), // Modern Purple
                   onTap: () => context.go('/waste-schedule'),
                 ),
                 _ServiceCard(
                   icon: Icons.report_problem,
                   title: 'Hazard Reporting',
                   subtitle: 'Report road damage, flooding',
-                  color: const Color(0xFFCE1126), // Philippine Flag Red
+                  color: const Color(0xFFEA580C), // Modern Orange
                   onTap: () => context.go('/hazard-reporting'),
                 ),
                 _ServiceCard(
                   icon: Icons.analytics,
                   title: 'Transparency Dashboard',
                   subtitle: 'SLA metrics & collection stats',
-                  color: const Color(0xFFFCD116), // Philippine Flag Yellow
+                  color: const Color(0xFF3B82F6), // Modern Blue
                   onTap: () => context.go('/transparency-dashboards'),
                 ),
                 _ServiceCard(
                   icon: Icons.dataset,
                   title: 'Open Data Portal',
                   subtitle: 'Public datasets & information',
-                  color: const Color(0xFF0038A8), // Philippine Flag Blue
+                  color: const Color(0xFFEC4899), // Modern Pink
                   onTap: () => context.go('/open-data-portal'),
                 ),
               ],
