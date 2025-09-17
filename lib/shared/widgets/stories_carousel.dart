@@ -39,67 +39,67 @@ class StoriesCarousel extends StatefulWidget {
 
 class _StoriesCarouselState extends State<StoriesCarousel> {
   
-  // Mock stories data - only mayor stories with modern colors
+  // Stories data using local images
   final List<StoryEntity> _stories = [
     StoryEntity(
       id: '1',
       title: 'Weekly Update',
       subtitle: 'Mayor\'s weekly message to the community',
-      imageUrl: 'https://via.placeholder.com/300x400/34C759/FFFFFF?text=Mayor+Message',
-      videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+      imageUrl: 'assets/images/stories/image1.png',
+      videoUrl: '',
       author: 'Mayor Juan Santos',
-      authorImageUrl: 'https://via.placeholder.com/50x50/34C759/FFFFFF?text=JS',
+      authorImageUrl: 'assets/images/stories/image1.png',
       createdAt: DateTime.now().subtract(const Duration(hours: 2)),
       duration: const Duration(seconds: 15),
-      isVideo: true,
+      isVideo: false,
     ),
     StoryEntity(
       id: '2',
       title: 'Infrastructure Progress',
       subtitle: 'Updates on ongoing infrastructure projects',
-      imageUrl: 'https://via.placeholder.com/300x400/3B82F6/FFFFFF?text=Infrastructure',
-      videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+      imageUrl: 'assets/images/stories/image2.png',
+      videoUrl: '',
       author: 'Mayor Juan Santos',
-      authorImageUrl: 'https://via.placeholder.com/50x50/34C759/FFFFFF?text=JS',
+      authorImageUrl: 'assets/images/stories/image2.png',
       createdAt: DateTime.now().subtract(const Duration(hours: 4)),
       duration: const Duration(seconds: 12),
-      isVideo: true,
+      isVideo: false,
     ),
     StoryEntity(
       id: '3',
       title: 'Community Programs',
       subtitle: 'New community programs and initiatives',
-      imageUrl: 'https://via.placeholder.com/300x400/EA580C/FFFFFF?text=Programs',
-      videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+      imageUrl: 'assets/images/stories/image3.png',
+      videoUrl: '',
       author: 'Mayor Juan Santos',
-      authorImageUrl: 'https://via.placeholder.com/50x50/34C759/FFFFFF?text=JS',
+      authorImageUrl: 'assets/images/stories/image3.png',
       createdAt: DateTime.now().subtract(const Duration(hours: 6)),
       duration: const Duration(seconds: 18),
-      isVideo: true,
+      isVideo: false,
     ),
     StoryEntity(
       id: '4',
       title: 'Public Safety Update',
       subtitle: 'Important safety information for residents',
-      imageUrl: 'https://via.placeholder.com/300x400/8B5CF6/FFFFFF?text=Safety',
-      videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+      imageUrl: 'assets/images/stories/image4.png',
+      videoUrl: '',
       author: 'Mayor Juan Santos',
-      authorImageUrl: 'https://via.placeholder.com/50x50/34C759/FFFFFF?text=JS',
+      authorImageUrl: 'assets/images/stories/image4.png',
       createdAt: DateTime.now().subtract(const Duration(hours: 8)),
       duration: const Duration(seconds: 20),
-      isVideo: true,
+      isVideo: false,
     ),
     StoryEntity(
       id: '5',
       title: 'Economic Development',
       subtitle: 'Updates on local economic development',
-      imageUrl: 'https://via.placeholder.com/300x400/EC4899/FFFFFF?text=Economy',
-      videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+      imageUrl: 'assets/images/stories/image5.png',
+      videoUrl: '',
       author: 'Mayor Juan Santos',
-      authorImageUrl: 'https://via.placeholder.com/50x50/34C759/FFFFFF?text=JS',
+      authorImageUrl: 'assets/images/stories/image5.png',
       createdAt: DateTime.now().subtract(const Duration(hours: 10)),
       duration: const Duration(seconds: 14),
-      isVideo: true,
+      isVideo: false,
     ),
   ];
 
@@ -207,7 +207,7 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
                         ? Stack(
                             fit: StackFit.expand,
                             children: [
-                              Image.network(
+                              Image.asset(
                                 story.imageUrl,
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) {
@@ -235,7 +235,7 @@ class _StoriesCarouselState extends State<StoriesCarousel> {
                               ),
                             ],
                           )
-                        : Image.network(
+                        : Image.asset(
                             story.imageUrl,
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) {
@@ -471,18 +471,9 @@ class _FullScreenStoryViewState extends State<FullScreenStoryView>
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage: NetworkImage(widget.stories[_currentIndex].authorImageUrl),
+                    backgroundImage: AssetImage(widget.stories[_currentIndex].authorImageUrl),
                     backgroundColor: Colors.white,
-                    child: widget.stories[_currentIndex].authorImageUrl.contains('placeholder')
-                        ? Text(
-                            widget.stories[_currentIndex].author.substring(0, 2).toUpperCase(),
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        : null,
+                    child: null,
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -625,7 +616,7 @@ class _FullScreenStoryViewState extends State<FullScreenStoryView>
           : Stack(
               fit: StackFit.expand,
               children: [
-                Image.network(
+                Image.asset(
                   story.imageUrl,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
@@ -633,8 +624,8 @@ class _FullScreenStoryViewState extends State<FullScreenStoryView>
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
-                            const Color(0xFF0038A8).withValues(alpha: 0.8),
-                            const Color(0xFFCE1126).withValues(alpha: 0.8),
+                            ShadcnTheme.primary.withValues(alpha: 0.8),
+                            ShadcnTheme.taskBlue.withValues(alpha: 0.8),
                           ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
@@ -720,18 +711,9 @@ class StoryDetailModal extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 20,
-                  backgroundImage: NetworkImage(story.authorImageUrl),
-                  backgroundColor: const Color(0xFF0038A8),
-                  child: story.authorImageUrl.contains('placeholder')
-                      ? Text(
-                          story.author.substring(0, 2).toUpperCase(),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      : null,
+                  backgroundImage: AssetImage(story.authorImageUrl),
+                  backgroundColor: ShadcnTheme.primary,
+                  child: null,
                 ),
                 const SizedBox(width: 12),
                 Expanded(
