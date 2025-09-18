@@ -385,14 +385,14 @@ class _HomePageState extends ConsumerState<HomePage> {
             // Quick Actions Grid - 3 items per row, max 6 items
             _buildServiceGrid(
               services: [
-                _ServiceItem(Icons.business, 'Business Permits', 'BPLS', () => context.go(AppRouter.businessPermits)),
-                _ServiceItem(Icons.home, 'Property Tax', 'RPT', () => context.go(AppRouter.propertyTax)),
-                _ServiceItem(Icons.credit_card, 'Digital ID', 'Local ID', () => context.go(AppRouter.digitalId)),
-                _ServiceItem(Icons.queue, 'Queue Mgmt', 'Digital Queue', () => context.go('/queue-management')),
-                _ServiceItem(Icons.description, 'Civil Registry', 'Birth, Marriage', () => context.go(AppRouter.civilRegistry)),
-                _ServiceItem(Icons.health_and_safety, 'Permits', 'Health, Work', () => context.go(AppRouter.permits)),
-                _ServiceItem(Icons.volunteer_activism, 'Social Programs', 'Assistance', () => context.go(AppRouter.socialPrograms)),
-                _ServiceItem(Icons.construction, 'Building Permits', 'OBOS', () => context.go('/obos-application')),
+                _ServiceItem(Icons.business, 'Business Permits', '', () => context.go(AppRouter.businessPermits)),
+                _ServiceItem(Icons.home, 'Property Tax', '', () => context.go(AppRouter.propertyTax)),
+                _ServiceItem(Icons.credit_card, 'Digital ID', '', () => context.go(AppRouter.digitalId)),
+                _ServiceItem(Icons.queue, 'Queue Mgmt', '', () => context.go('/queue-management')),
+                _ServiceItem(Icons.description, 'Civil Registry', '', () => context.go(AppRouter.civilRegistry)),
+                _ServiceItem(Icons.health_and_safety, 'Permits', '', () => context.go(AppRouter.permits)),
+                _ServiceItem(Icons.volunteer_activism, 'Social Programs', '', () => context.go(AppRouter.socialPrograms)),
+                _ServiceItem(Icons.construction, 'Building Permits', '', () => context.go('/obos-application')),
               ],
               showAll: _showAllQuickActions,
               onToggleShowAll: () => setState(() => _showAllQuickActions = !_showAllQuickActions),
@@ -791,17 +791,19 @@ class _ServiceCard extends StatelessWidget {
                   maxLines: isCompact ? 2 : 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: isCompact ? 4 : 6),
-                Text(
-                  subtitle,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: const Color(0xFF6B7280),
-                    fontSize: isCompact ? 10 : 12,
+                if (subtitle.isNotEmpty) ...[
+                  SizedBox(height: isCompact ? 4 : 6),
+                  Text(
+                    subtitle,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: const Color(0xFF6B7280),
+                      fontSize: isCompact ? 10 : 12,
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: isCompact ? 2 : 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  textAlign: TextAlign.center,
-                  maxLines: isCompact ? 2 : 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                ],
               ],
             ),
           ),
