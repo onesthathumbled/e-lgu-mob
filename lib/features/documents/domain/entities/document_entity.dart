@@ -73,6 +73,7 @@ enum DocumentType {
   invoice,
   report,
   letter,
+  form,
   other,
 }
 

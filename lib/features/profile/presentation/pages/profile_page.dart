@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../shared/widgets/shadcn_components.dart';
 import '../../../../shared/widgets/main_navigation.dart';
 import '../../../../shared/widgets/announcement_banner.dart';
-import '../../../documents/presentation/pages/document_generator_demo_page.dart';
+import '../../../documents/presentation/pages/pdf_generation_page.dart';
 import '../../../phase2/gamification/presentation/pages/gamification_page.dart';
 
 class ProfilePage extends ConsumerWidget {
@@ -89,7 +89,7 @@ class ProfilePage extends ConsumerWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const DocumentGeneratorDemoPage(),
+                    builder: (context) => const PdfGenerationPage(),
                   ),
                 );
               },
