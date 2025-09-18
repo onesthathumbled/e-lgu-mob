@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:universal_html/html.dart' as html;
 import '../../../../shared/widgets/shadcn_components.dart';
 import '../../../../shared/widgets/main_navigation.dart';
 import '../../../../shared/models/user.dart';
@@ -420,11 +421,21 @@ class _PdfGenerationPageState extends ConsumerState<PdfGenerationPage> {
     if (kIsWeb) {
       final bytes = document.metadata?['pdfBytes'] as List<int>?;
       if (bytes != null) {
-        // For web, we'll trigger the print dialog which allows saving
-        _pdfService.printDocument(document);
+        // Create blob and trigger direct download
+        final blob = html.Blob([bytes], 'application/pdf');
+        final url = html.Url.createObjectUrlFromBlob(blob);
+        final anchor = html.AnchorElement(href: url)
+          ..setAttribute('download', '${document.title}.pdf')
+          ..style.display = 'none';
+        
+        html.document.body?.append(anchor);
+        anchor.click();
+        anchor.remove();
+        html.Url.revokeObjectUrl(url);
+        
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('PDF ready for download/printing'),
+          SnackBar(
+            content: Text('${document.title} downloaded successfully!'),
             backgroundColor: Colors.green,
           ),
         );
